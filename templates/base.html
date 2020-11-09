@@ -1,0 +1,30 @@
+<!--templates/base.html-->
+<!DOCTYPE html>
+<html>
+  <head>
+    {% block head %}
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{{data['blog_title']}}</title>
+    <script src="/static/scripts/jQuery.js"></script>
+    <script src='/static/scripts/main.js'></script>
+    <link href="/static/styles/index.css" rel="stylesheet">
+    <link href="/static/fonts/setup.css" rel='stylesheet'>
+    <link href="/static/images/site_logo.png" rel="icon">
+    {% endblock %}
+  </head>
+  <body>
+    <div id="main">
+      {% block main %}
+      <div id="content">{% block content %}{% endblock %}</div>
+      <div id="sidebar">{% block sidebar %}{% endblock %}</div>
+      {% endblock %}
+    </div>
+
+    <div id="footer">
+      {% block footer %}
+      &copy; Copyright 2020 by <a href="https://www.khmerweb.app/">Khmer Web</a>.
+      {% endblock %}
+    </div>
+  </body>
+</html>

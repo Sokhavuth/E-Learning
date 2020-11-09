@@ -1,17 +1,5 @@
 <!--templates/index.html-->
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>{{data['blog_title']}}</title>
-    <script src="/static/scripts/jQuery.js"></script>
-    <script src='/static/scripts/main.js'></script>
-    <link href="/static/styles/index.css" rel="stylesheet">
-    <link href="/static/fonts/setup.css" rel='stylesheet'>
-    <link href="/static/images/site_logo.png" rel="icon">
-  </head>
-  <body>
-    ស្វាគមន៍​មក​កាន់​កម្មវិធី​គេហទំព័រ «រៀន​ពី​ចំងាយ»
-  </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<p>Hello World!</p>
+{% endblock %}
