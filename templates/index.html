@@ -1,5 +1,60 @@
 <!--templates/index.html-->
 {% extends "base.html" %}
-{% block content %}
-<p>Hello World!</p>
+
+{% block head %}
+{{ super() }}
+<link href="/static/styles/index.css" rel="stylesheet" >
+{% endblock %}
+
+{% block main %}
+<div id="front-panel">
+  <div class='wrapper1'>
+    <div  style="position:relative;padding-top:57.25%;">
+      <iframe src="https://www.youtube.com/embed/OOSl2jeAA5U" 
+      frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+    </div>
+  </div>
+
+  <div class='wrapper'>
+    <div  style="position:relative;padding-top:56.25%;">
+      <iframe src="https://www.youtube.com/embed/5FKL_voZuFw" 
+      frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+    </div>
+  </div>
+
+  <div class='wrapper'>
+    <div  style="position:relative;padding-top:56.25%;">
+      <iframe src="https://www.youtube.com/embed/7lmCu8wz8ro" 
+      frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+    </div>
+  </div>
+
+  <div class='wrapper'>
+    <div  style="position:relative;padding-top:56.25%;">
+      <iframe src="https://www.youtube.com/embed/SnL5L7RbnJ4" 
+      frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+    </div>
+  </div>
+
+  <div class='wrapper'>
+    <div  style="position:relative;padding-top:56.25%;">
+      <iframe src="https://www.youtube.com/embed/yKHJsLUENl0" 
+      frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+    </div>
+  </div>
+</div>
+
+<div id='front-nav'>
+  <img class="left" src="/static/images/left.png" />
+  <img class="home" src="/static/images/home.png" />
+  <img class="right" src="/static/images/right.png" />
+</div>
+
+<div id="books">
+  <img src="https://1.bp.blogspot.com/-PlpWIFhD-q4/X0iPNaYTSuI/AAAAAAABpes/bsWj2hMdhTASnDJ8dL23bKsJDhBoCcbugCLcBGAsYHQ/s0/JS.jpg" />
+  <img src="https://1.bp.blogspot.com/-s2voUvx_tfc/X21b7wGtx9I/AAAAAAABqNQ/vhW73L3dVeAlY9EON5pH8WEtBHqX5uPdQCLcBGAsYHQ/s0/database.jpg" />
+  <img src="https://1.bp.blogspot.com/-3ODO0YglZ_8/X0iQHSX4CgI/AAAAAAABpfA/_tJ1JLjHSWsZIjI3G0TXaRGywtgYzKrYACLcBGAsYHQ/s0/Express.jpg" />
+  <img src="https://1.bp.blogspot.com/-LR5DJqEyC-A/X3Pmv94V_qI/AAAAAAABqRE/unRjVMbHo_whh5dgb1J2iKdPmT0Fu17ugCLcBGAsYHQ/s0/appjs.jpg" />
+</div>
+
 {% endblock %}

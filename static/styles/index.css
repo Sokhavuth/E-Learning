@@ -1,8 +1,47 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/*static/styles/insex.css*/
+#front-panel{
+  background:lightgrey; 
+  margin-top: 1px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px 10px;
+  padding: 10px;
 }
-body{
-  font: 14px/1.5 Vidalota, OdorMeanChey;
+#front-panel .wrapper1 {
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 2;
+}
+#front-nav{
+  text-align: center;
+  background: lightgrey;
+  margin-top: 1px;
+  padding: 5px 0 0;
+}
+#front-nav img{
+  height: 25px;
+}
+#front-nav img:hover{
+  opacity: .7;
+  cursor: pointer;
+}
+@media only screen and (max-width: 600px){
+  #front-panel{
+    grid-template-columns: 100%;
+  }
+}
+#books{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 15px;
+  margin-top: 20px;
+}
+#books img{
+  width: 100%;
+  border: 1px solid grey;
+}
+@media only screen and (max-width: 600px){
+  #books{
+    grid-template-columns: 100%;
+    padding: 10px;
+  }
 }
