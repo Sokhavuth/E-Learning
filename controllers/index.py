@@ -8,4 +8,4 @@ class Index(FlaskView):
 
     @route('/')
     def index(self):
-        return render_template('index.html', data={'blog_title':'រៀន​ពីចំងាយ'})
+        return render_template('index.html', data={'blog_title':'សាលារៀន​ពីចំងាយ'})

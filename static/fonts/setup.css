@@ -16,6 +16,10 @@
   src: url(OdorMeanChey.ttf);
 }
 @font-face {
+  font-family: Nokora;
+  src: url(Nokora.ttf);
+}
+@font-face {
   font-family: Rooster;
   src: url(Rooster.ttf);
 }

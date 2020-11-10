@@ -7,23 +7,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{{data['blog_title']}}</title>
     <script src="/static/scripts/jQuery.js"></script>
-    <script src='/static/scripts/main.js'></script>
-    <link href="/static/styles/index.css" rel="stylesheet">
+    <script src='/static/scripts/base.js'></script>
+    <link href="/static/styles/base.css" rel="stylesheet">
+    <link href="/static/styles/menu.css" rel="stylesheet">
     <link href="/static/fonts/setup.css" rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/static/images/site_logo.png" rel="icon">
     {% endblock %}
   </head>
   <body>
-    <div id="main">
+    <div id="header">
+      {% block header %}
+      <header id="blog-title" class="blog-title region">
+        <div id="date-time">
+          <div class="date" >
+            <script>
+              $(document).ready(function(){
+                $('.date').append(base.setDate());
+              });
+            </script>
+          </div>
+          <div id="kh-clock">
+            <script>
+              $(document).ready(function(){
+                base.setClock();
+              });
+            </script>
+          </div>
+        </div>
+        <div id="title">
+          {{data['blog_title']}}
+          <div class="description">ចំណេះវិជ្ជា​ជាឃ្លាំងប្រាក់</div>
+        </div>
+        <div id="blog-search">
+          <form class="search" action="/search/frontend" method="post">
+            <input type="text"  placeholder="Search.." name="fquery" required>
+            <button type="submit">ស្វែង​រក</button>
+          </form>
+        </div>
+      </header>
+      <nav id="main-menu" class="main-menu ">
+        <ul class="Menu region">
+          
+          <div class="topnav" id="myTopnav">
+            <a href="#home" class="active">ទំព័រដើម</a>
+            <a href="#news">ព័ត៌មាន</a>
+            <a href="#contact">ទំនាក់ទំនង</a>
+            <a href="#about">អំពីយើង​ខ្ញុំ</a>
+            <a href="javascript:void(0);" class="icon" onclick="base.mobileMenu()">
+              <i class="fa fa-bars"></i>
+            </a>
+          </div>
+        </ul>
+      </nav>
+      {% endblock %}
+    </div>
+
+    <div id="main" class="main region">
       {% block main %}
       <div id="content">{% block content %}{% endblock %}</div>
       <div id="sidebar">{% block sidebar %}{% endblock %}</div>
       {% endblock %}
     </div>
 
-    <div id="footer">
+    <div id="footer" class="footer region">
       {% block footer %}
       &copy; Copyright 2020 by <a href="https://www.khmerweb.app/">Khmer Web</a>.
+      <script>var base = new Base();</script>
       {% endblock %}
     </div>
   </body>

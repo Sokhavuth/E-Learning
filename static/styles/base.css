@@ -1,0 +1,80 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+}
+a img:hover{
+  opacity: .7;
+}
+body{
+  font: 14px/1.5 Vidalota, OdorMeanChey;
+}
+.region{
+  max-width: 1100px;
+  margin: 0 auto;
+}
+#blog-title{
+  display: grid;
+  grid-template-columns: 25% auto 25%;
+  text-align: center;
+  align-items: center;
+  padding: 15px 0;
+  color: darkblue;
+}
+#blog-title #title{
+  font: 50px/1.5 Koulen;
+}
+#blog-title .description{
+  font: Italic 20px/1.5 OdorMeanChey;
+  margin-top: 10px;
+}
+#blog-title #date-time{
+  text-align: left;
+  line-height: 1.75;
+}
+#blog-title #blog-search{
+  text-align: right;
+}
+#blog-search form{
+  display: grid;
+  grid-template-columns: 75% 25%;
+}
+#blog-search input,
+#blog-search button{
+  font: 14px/1.5 Vidalota, OdorMeanChey;
+  padding: 5px;
+  color: darkblue;
+}
+@media only screen and (max-width: 600px){
+  #blog-title{
+    grid-template-columns: 100%;
+    padding: 10px;
+  }
+  #blog-title #date-time{
+    text-align: center;
+  }
+  #blog-title #title{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+#main-menu{
+  background: darkblue;
+  border-top: 5px solid orangered;
+}
+#main-menu ul li{
+  list-style-type: none;
+  display: inline-block;
+}
+#main-menu a{
+  color: white;
+  padding: 10px 15px;
+  display: block;
+  font: 16px/1.5 Bayon;
+}
+#main-menu a:hover{
+  background: rgb(0, 0, 187);
+}
