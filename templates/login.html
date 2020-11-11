@@ -1,0 +1,39 @@
+<!--templates/login.html-->
+<!DOCTYPE html>
+<html>
+  <head>
+    {% block head %}
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="This blog engine is built for e-learning">
+    <meta name="robots" content="index, follow">
+    <meta name='keywords' content='e-learning, learning, school, math, programming'>
+    <title>{{data['blog_title']}}</title>
+    <script src="/static/scripts/jQuery.js"></script>
+    <script src='/static/scripts/login.js'></script>
+    <link href="/static/styles/base.css" rel="stylesheet">
+    <link href="/static/styles/login.css" rel="stylesheet">
+    <link href="/static/fonts/setup.css" rel='stylesheet'>
+    <link href="/static/images/site_logo.png" rel="icon">
+    {% endblock %}
+  </head>
+  <body>
+    <div id="main" class="main region">
+      <div id="form-title">ទំរង់បែបបទ​ចុះ​ឈ្មោះ</div>
+      <form id="content" method="post" action="/login/">
+        {% block content %}
+        <a>Email:</a><input type="email" name="femail" required />
+        <a>ពាក្យ​សំងាត់ៈ</a><input type="password" name="fpassword" required />
+        <a></a><input type="submit" value="ចុះឈ្មោះ" />
+        {% endblock %}
+      </form>
+    </div>
+
+    <div id="footer" class="footer region">
+      {% block footer %}
+      &copy; Copyright 2020 by <a href="https://www.khmerweb.app/">Khmer Web</a>.
+      <script>var base = new Base();</script>
+      {% endblock %}
+    </div>
+  </body>
+</html>

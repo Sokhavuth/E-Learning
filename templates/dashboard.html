@@ -1,4 +1,4 @@
-<!--templates/base.html-->
+<!--templates/dashboard.html-->
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,11 +10,10 @@
     <meta name='keywords' content='e-learning, learning, school, math, programming'>
     <title>{{data['blog_title']}}</title>
     <script src="/static/scripts/jQuery.js"></script>
-    <script src='/static/scripts/base.js'></script>
-    <link href="/static/styles/base.css" rel="stylesheet">
-    <link href="/static/styles/menu.css" rel="stylesheet">
+    <script src='/static/scripts/base_dashboard.js'></script>
+    <link href="/static/styles/base_dashboard.css" rel="stylesheet">
+    <link href="/static/styles/menu_dashboard.css" rel="stylesheet">
     <link href="/static/fonts/setup.css" rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/static/images/site_logo.png" rel="icon">
     {% endblock %}
   </head>
@@ -22,25 +21,9 @@
     <div id="header">
       {% block header %}
       <header id="blog-title" class="blog-title region">
-        <div id="date-time">
-          <div class="date" >
-            <script>
-              $(document).ready(function(){
-                $('.date').append(base.setDate());
-              });
-            </script>
-          </div>
-          <div id="kh-clock">
-            <script>
-              $(document).ready(function(){
-                base.setClock();
-              });
-            </script>
-          </div>
-        </div>
+        
         <div id="title">
           {{data['blog_title']}}
-          <div class="description">ចំណេះវិជ្ជា​ជាឃ្លាំងប្រាក់</div>
         </div>
         <div id="blog-search">
           <form class="search" action="/search/frontend" method="post">
@@ -49,20 +32,6 @@
           </form>
         </div>
       </header>
-      <nav id="main-menu" class="main-menu" > 
-        <div class="Menu region">
-          <div class="topnav" id="myTopnav">
-            <a href="#home" class="active">ទំព័រដើម</a>
-            <a href="#news">ព័ត៌មាន</a>
-            <a href="#contact">ទំនាក់ទំនង</a>
-            <a href="#about">អំពីយើង​ខ្ញុំ</a>
-            <a href="javascript:void(0);" class="icon" onclick="base.mobileMenu()">
-              <i class="fa fa-bars"></i>
-            </a>
-            <a href="/login/" class="login">ចូល​ក្នុង</a>
-          </div>
-        </div>
-      </nav>
       {% endblock %}
     </div>
     

@@ -1,0 +1,30 @@
+/*static/login.css*/
+body{
+  background: rgb(182, 181, 181);
+}
+#main{
+  width: 400px;
+  margin: 30px auto;
+  text-align: center;
+  background: white;
+}
+#main #form-title{
+  padding: 8px;
+  font: 16px/1.5 Moul;
+  background: rgb(219, 58, 0);
+  color: white;
+}
+#content{
+  display: grid;
+  grid-template-columns: 80px auto;
+  grid-gap: 7px 5px;
+  align-items: center;
+  padding: 20px;
+}
+#content a{
+  text-align: right;
+}
+#content input{
+  font: 14px/1.5 OdorMeanChey;
+  padding: 4px;
+}

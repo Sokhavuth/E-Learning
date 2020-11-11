@@ -23,7 +23,11 @@
   color: white;
 }
 
-.topnav .icon {
+.topnav .login{
+  float: right;
+}
+
+.topnav .icon{
   display: none !important;
 }
 
