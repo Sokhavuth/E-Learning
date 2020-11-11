@@ -17,7 +17,7 @@ class Index(FlaskView):
     def login(self):
         if request.method == 'POST':
             email = request.form['femail']
-            
+            self.userdb.insert('vuthdevelop@gmail.com', 'sokhavuth', '_ADMIN__')
             #if(self.userdb.check_username(username)):
             return render_template('dashboard.html', data=self.vdict)
         
