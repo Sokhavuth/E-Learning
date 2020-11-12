@@ -20,10 +20,15 @@ class Index(FlaskView):
             password = request.form['fpassword']
 
             if(self.userdb.check_user(email, password)):
+            if True:
                 session['email'] = email
                 return render_template('dashboard.html', data=self.vdict)
         
-        return render_template('login.html', data=self.vdict)
+        else:
+            if 'email' in session:
+                return render_template('dashboard.html', data=self.vdict)
+            
+            return render_template('login.html', data=self.vdict)
 
     @route('/logout/')
     def logout(self):

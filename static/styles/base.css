@@ -6,8 +6,9 @@
 }
 a{
   text-decoration: none;
+  color:  darkblue;
 }
-a img:hover{
+a img:hover, a:hover{
   opacity: .7;
 }
 body{
@@ -19,7 +20,7 @@ body{
 }
 #blog-title{
   display: grid;
-  grid-template-columns: 25% auto 25%;
+  grid-template-columns: 25% auto 20%;
   text-align: center;
   align-items: center;
   padding: 15px 0;

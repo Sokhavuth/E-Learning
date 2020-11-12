@@ -1,0 +1,55 @@
+/*static/styles/base_dashboard.css*/
+#header{
+  background: lightgrey;
+  border-bottom: 15px solid rgb(172, 170, 170);
+}
+#header #inner{
+  display: grid;
+  grid-template-columns: 30% auto 25%;
+  align-items: center;
+  grid-gap: 10px;
+  padding: 10px;
+}
+#header #inner #logout{
+  text-align: right;
+}
+#header #title{
+  display: grid;
+  grid-template-columns: 35px auto;
+  grid-gap:5px;
+  align-items: center;
+  font: 27px/1.5 Moul;
+}
+#header #title img{
+  width: 100%;
+}
+#main{
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 25% auto;
+  grid-gap: 10px;
+}
+#main #sidebar{
+  background: lightgrey;
+  padding: 20px;
+  min-height: 300px;
+}
+#main #sidebar div{
+  display: grid;
+  grid-template-columns: 15% auto;
+  grid-gap: 10px;
+  align-items: center;
+  font: 18px/1.5 Koulen;
+}
+#main #sidebar img{
+  width: 100%;
+}
+#main #content{
+  background: lightgrey;
+
+}
+#item-listing{
+  background: lightgrey;
+  margin-top:10px;
+  min-height: 200px;
+}
