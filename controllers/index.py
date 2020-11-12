@@ -20,7 +20,6 @@ class Index(FlaskView):
             password = request.form['fpassword']
 
             if(self.userdb.check_user(email, password)):
-            if True:
                 session['email'] = email
                 return render_template('dashboard.html', data=self.vdict)
         
