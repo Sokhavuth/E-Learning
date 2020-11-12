@@ -1,9 +1,10 @@
 #main.py
-import os
+import config
 from flask import Flask
 from controllers.index import Index
 
 app = Flask(__name__)
+app.secret_key = config.vdict['secret_key']
 
 Index.register(app, route_base='/')
 

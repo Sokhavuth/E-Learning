@@ -22,7 +22,7 @@
       <div id="form-title">ទំរង់បែបបទ​ចុះ​ឈ្មោះ</div>
       <form id="content" method="post" action="/login/">
         {% block content %}
-        <a>Email:</a><input type="email" name="femail" required />
+        <a>Email:</a><input type="email" name="femail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
         <a>ពាក្យ​សំងាត់ៈ</a><input type="password" name="fpassword" required />
         <a></a><input type="submit" value="ចុះឈ្មោះ" />
         {% endblock %}

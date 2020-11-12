@@ -1,6 +1,6 @@
-/*static/login.css*/
+/*static/styles/login.css*/
 body{
-  background: rgb(182, 181, 181);
+  background: grey;
 }
 #main{
   width: 400px;
