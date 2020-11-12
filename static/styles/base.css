@@ -20,7 +20,7 @@ body{
 }
 #blog-title{
   display: grid;
-  grid-template-columns: 25% auto 20%;
+  grid-template-columns: 25% auto 25%;
   text-align: center;
   align-items: center;
   padding: 15px 0;
