@@ -12,7 +12,7 @@ a img:hover, a:hover{
   opacity: .7;
 }
 body{
-  font: 14px/1.5 Vidalota, OdorMeanChey;
+  font: 14px/1.5 Vidaloka, OdorMeanChey;
 }
 .region{
   max-width: 1100px;
@@ -46,7 +46,7 @@ body{
 }
 #blog-search input,
 #blog-search button{
-  font: 14px/1.5 Vidalota, OdorMeanChey;
+  font: 14px/1.5 Vidaloka, OdorMeanChey;
   padding: 5px;
   color: darkblue;
 }

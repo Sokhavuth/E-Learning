@@ -1,0 +1,22 @@
+<!--templates/category.html-->
+{% extends 'dashboard/dashboard.html' %}
+
+{% block head %}
+{{ super() }}
+<link href="/static/styles/category.css" rel="stylesheet" >
+{% endblock %}
+
+{% block content %}
+  <form id='category' action='/dashboard/category/' method="POST" >
+    <input id='category-title' name="fcategory-title" type="text" placeholder="ប្រភេទ​មេរៀន" required />
+    <textarea name="fcontent" id="editor" ></textarea>
+    <div id="bottombar">
+      <input id="submit" class="bottom-widget" type="submit" value="ចុះ​ផ្សាយ">
+      <input id="category-date" value="{{ data['datetime'][0] }}" class="bottom-widget category-time" type="text" name="fcategory-date" required />
+      <input id="category-time" value="{{ data['datetime'][1] }}" class="bottom-widget category-time" type="text" name="fcategory-time" required />
+      <input disabled type='text' value="{{ session['logged-in'] }}" id="category-author" class="category-time" name="fcategory-author" required />
+    </div>
+  </form>
+  <div id="message">{{ data['message'] }}</div>
+  <script src="/static/scripts/ckeditor/config.js"></script>
+{% endblock %}

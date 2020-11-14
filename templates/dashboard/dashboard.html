@@ -10,12 +10,13 @@
     <meta name='keywords' content='e-learning, learning, school, math, programming'>
     <title>{{data['blog_title']}}</title>
     <script src="/static/scripts/jQuery.js"></script>
-    <script src='/static/scripts/base_dashboard.js'></script>
+    <script src="/static/scripts/ckeditor/ckeditor.js"></script>
+    <script src='/static/scripts/base.js'></script>
+    <script src='/static/scripts/dashboard.js'></script>
     <link href="/static/styles/base.css" rel="stylesheet" >
-    <link href="/static/styles/base_dashboard.css" rel="stylesheet">
-    <link href="/static/styles/menu_dashboard.css" rel="stylesheet">
+    <link href="/static/styles/dashboard.css" rel="stylesheet">
     <link href="/static/fonts/setup.css" rel='stylesheet'>
-    <link href="/static/images/site_logo.png" rel="icon">
+    <link href="/static/images/site_logo.png" rel="shortcut icon">
     {% endblock %}
   </head>
   <body>
@@ -24,7 +25,7 @@
       <header id="inner" class="inner region">
         <div id="title">
           <a href="/"><img src="/static/images/site_logo.png" /></a>
-          <a href="/login/">{{data['blog_title']}}</a>
+          <a >{{data['blog_title']}}</a>
         </div>
         <div id="blog-search">
           <form class="search" action="/search/backend/" method="post">
@@ -32,7 +33,7 @@
             <button type="submit">ស្វែង​រក</button>
           </form>
         </div>
-        <div id="logout"><a href="/logout/">ចេញ​ក្រៅ</a></div>
+        <div id="logout"><a href="/login/logout/">ចេញ​ក្រៅ</a></div>
       </header>
       {% endblock %}
     </div>
@@ -42,14 +43,25 @@
       <div id="sidebar">
         {% block sidebar %}
         <div><a href="/posting"><img src="/static/images/posting.png" /></a><a href="/posting">ចុះផ្សាយ​មេរៀន</a></div>
-        <div><a href="/categorizing"><img src="/static/images/categorizing.png" /></a><a href="/categorizing">បង្កើតប្រភេទមេរៀន</a></div>
+        <div><a href="/category/"><img src="/static/images/categorizing.png" /></a><a href="/dashboard/category/">បង្កើតប្រភេទមេរៀន</a></div>
         <div><a href="/paging"><img src="/static/images/paging.png" /></a><a href="/paging">បង្កើតទំព័រមាតិកា</a></div>
         <div><a href="/uploading"><img src="/static/images/multimedia.png" /></a><a href="/uploading">ចំលងឯកសារ</a></div>
         <div><a href="/addinguser"><img src="/static/images/user.png" /></a><a href="/addinguser">បន្ថែមសមាជិក</a></div>
         <div><a href="/setting"><img src="/static/images/setting.png" /></a><a href="/setting">កំណត់ទំរង់លក្ខណៈ</a></div>
         {% endblock %}
       </div>
-      <div id="content">{% block content %}{% endblock %}</div>
+      <div id="content">
+        {% block content %}
+        <textarea name="fcontent" id="editor"></textarea>
+        <div id="bottombar">
+          <input id="submit" class="bottom-widget" type="submit" value="ចុះ​ផ្សាយ">
+          <input id="category-date" value="date" class="bottom-widget category-time" type="text" name="fcategory-date" />
+          <input id="category-time" value="time" class="bottom-widget category-time" type="text" name="fcategory-time" />
+          <input disabled style="background:white;text-align:center;" type='text' value="author" id="category-author" class="bottom-widget category-time" />
+        </div>
+        <script src="/static/scripts/ckeditor/config.js"></script>
+        {% endblock %}
+      </div>
       {% endblock %}
     </div>
 
