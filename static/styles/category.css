@@ -32,3 +32,14 @@
 #message{
   text-align: center;
 }
+#item-listing{
+  padding: 20px;
+}
+#item-listing .category{
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 20% auto 10%;
+}
+#item-listing .category img{
+  width: 100%;
+}

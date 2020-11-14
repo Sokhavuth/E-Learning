@@ -1,4 +1,4 @@
-#models/userdb.py
+#models/dashboard/userdb.py
 import os, psycopg2
 
 class Categorydb():

@@ -23,3 +23,4 @@ class Dashboard(FlaskView):
     return self.cat.get_post()
 
     
+dashboard = Dashboard()

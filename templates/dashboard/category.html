@@ -20,3 +20,14 @@
   <div id="message">{{ data['message'] }}</div>
   <script src="/static/scripts/ckeditor/config.js"></script>
 {% endblock %}
+
+{% block item_listing %}
+<ul id="item-listing" class="item-listing region">
+  <li class="category">
+    <a class="thumbnail"><img src="{{data['thumbs'][0]}}" /></a>
+    <div class='title'>
+      <a href="#">{{ data['categories'][0][1] }}</a>
+    </div>
+  </li>
+</ul>
+{% endblock %}
