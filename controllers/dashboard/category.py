@@ -12,7 +12,7 @@ class Category():
     vdict = copy.deepcopy(config.vdict)
     vdict['blog_title'] = 'បង្កើតប្រភេទមេរៀន'
     vdict['datetime'] = self.lib.get_timezone()
-    vdict['categories'] = self.categorydb.select(5)
+    vdict['categories'] = self.categorydb.select(vdict['dashboard_max_category'])
     vdict['thumbs'] = self.lib.get_thumbs(vdict['categories'], 2)
 
     if (request.method == "POST") and ('logged-in' in session):
@@ -26,7 +26,7 @@ class Category():
       author = session['logged-in']
 
       try:
-        date = datetime.datetime.strptime(date, "%d-%m-%Y")
+        date = datetime.datetime.strptime(date, "%d/%m/%Y")
       except ValueError:
         vdict['message'] = 'ទំរង់​កាលបរិច្ឆេទ​មិន​ត្រឹមត្រូវ!'
         return render_template('dashboard/category.html', data=vdict)
@@ -38,7 +38,7 @@ class Category():
         return render_template('dashboard/category.html', data=vdict)
 
       self.categorydb.insert(category, content, date, time, author)
-      vdict['categories'] = self.categorydb.select(5)
+      vdict['categories'] = self.categorydb.select(vdict['dashboard_max_category'])
       vdict['thumbs'] = self.lib.get_thumbs(vdict['categories'], 2)
 
       return render_template('dashboard/category.html', data=vdict)
@@ -48,3 +48,24 @@ class Category():
         return render_template('dashboard/category.html', data=vdict)
 
       return render_template('login.html', data=vdict)
+
+  def delete(self, category):
+    if 'logged-in' in session:
+      self.categorydb.delete(category)
+      return redirect('/dashboard/category/')
+
+    return render_template('login.html', data=vdict)
+
+  def edit(self, category):
+    if 'logged-in' in session:
+      vdict = copy.deepcopy(config.vdict)
+      vdict['blog_title'] = 'បង្កើតប្រភេទមេរៀន'
+      vdict['categories'] = self.categorydb.select(vdict['dashboard_max_category'])
+      vdict['thumbs'] = self.lib.get_thumbs(vdict['categories'], 2)
+      category = self.categorydb.select(1, category)
+      vdict['datetime'] = (category[3].strftime('%d/%m/%Y'), category[4].strftime('%H:%M:%S'))
+      vdict['category'] = category
+
+      return render_template('dashboard/category.html', data=vdict)
+
+    return render_template('login.html', data=vdict)

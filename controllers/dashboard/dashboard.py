@@ -22,5 +22,12 @@ class Dashboard(FlaskView):
   def category(self):
     return self.cat.get_post()
 
+  @route('/category/delete/<category>')
+  def delete(self, category):
+    return self.cat.delete(category)
+
+  @route('/category/edit/<category>')
+  def edit(self, category):
+    return self.cat.edit(category)
     
 dashboard = Dashboard()

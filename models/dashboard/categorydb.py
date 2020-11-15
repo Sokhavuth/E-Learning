@@ -40,17 +40,39 @@ class Categorydb():
   def insert(self, *category):
     self.set_conection()
 
-    self.cursor.execute("INSERT INTO CATEGORIES (CATEGORY, CONTENT, CATDATE, CATTIME, AUTHOR) VALUES %s ", (category,))
+    self.cursor.execute("SELECT CATEGORY FROM CATEGORIES WHERE CATEGORY = %s", (category[0],))
+    result = self.cursor.fetchone()
+    if not result:
+      self.cursor.execute("INSERT INTO CATEGORIES (CATEGORY, CONTENT, CATDATE, CATTIME, AUTHOR) VALUES %s ", (category,))
+    else:
+      sql = "UPDATE CATEGORIES SET CATEGORY = %s, CONTENT = %s, CATDATE = %s, CATTIME = %s, AUTHOR = %s WHERE CATEGORY = '"+category[0]+"'"
+      self.cursor.execute(sql, category)
   
     self.conn.commit()
     self.conn.close()
 
-  def select(self, amount):
+  def select(self, amount, category=''):
     self.set_conection()
 
-    SQL = "SELECT * FROM CATEGORIES LIMIT %s"
-    self.cursor.execute(SQL, (amount,))
-    result = self.cursor.fetchall()
+    if category:
+      SQL = "SELECT * FROM CATEGORIES WHERE CATEGORY = %s LIMIT 1"
+      self.cursor.execute(SQL, (category,))
+      result = self.cursor.fetchone()
+
+    else:
+      SQL = "SELECT * FROM CATEGORIES ORDER BY CATDATE DESC, CATTIME DESC LIMIT %s"
+      self.cursor.execute(SQL, (amount,))
+      result = self.cursor.fetchall()
     
     self.conn.close()
     return result
+
+  def delete(self, category):
+    self.set_conection()
+
+    SQL = "DELETE FROM CATEGORIES WHERE CATEGORY = %s"
+
+    self.cursor.execute(SQL, (category,))
+
+    self.conn.commit()
+    self.conn.close()

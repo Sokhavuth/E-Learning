@@ -8,8 +8,13 @@
 
 {% block content %}
   <form id='category' action='/dashboard/category/' method="POST" >
-    <input id='category-title' name="fcategory-title" type="text" placeholder="ប្រភេទ​មេរៀន" required />
+    {% if 'category' in data %}
+    <input id='category-title' value="{{ data['category'][1] }}" name="fcategory-title" type="text" placeholder="ប្រភេទ​មេរៀន" required />
+    <textarea name="fcontent" id="editor" >{{ data['category'][2] }}</textarea>
+    {% else: %}
+    <input id='category-title' value="" name="fcategory-title" type="text" placeholder="ប្រភេទ​មេរៀន" required />
     <textarea name="fcontent" id="editor" ></textarea>
+    {% endif %}
     <div id="bottombar">
       <input id="submit" class="bottom-widget" type="submit" value="ចុះ​ផ្សាយ">
       <input id="category-date" value="{{ data['datetime'][0] }}" class="bottom-widget category-time" type="text" name="fcategory-date" required />
@@ -23,11 +28,24 @@
 
 {% block item_listing %}
 <ul id="item-listing" class="item-listing region">
+  {% for v in range(data['categories']|length) %}
   <li class="category">
-    <a class="thumbnail"><img src="{{data['thumbs'][0]}}" /></a>
+    <a class="thumbnail" href="/category/{{ data['categories'][v][1] }}"><img src="{{data['thumbs'][v]}}" /></a>
+    <script>
+      var width = $('#category .thumbnail').css('width');
+      var height = parseInt(width)*9/16;
+      $('#category .thumbail').css('height', height);
+    </script>
     <div class='title'>
-      <a href="#">{{ data['categories'][0][1] }}</a>
+      <a href="/category/{{ data['categories'][v][1] }}">{{ data['categories'][v][1] }}</a>
+      <span>{{ data['categories'][v][3].strftime('%d/%m/%Y') }}</span>
+    </div>
+    <div class="crud">
+      <a class="user">{{ data['categories'][v][-1] }}</a>
+      <a href='/dashboard/category/delete/{{ data["categories"][v][1] }}'><img src="/static/images/delete.png" /></a>
+      <a href='/dashboard/category/edit/{{ data["categories"][v][1] }}'><img src="/static/images/edit.png" /></a>
     </div>
   </li>
+  {% endfor %}
 </ul>
 {% endblock %}

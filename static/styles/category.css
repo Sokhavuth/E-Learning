@@ -38,8 +38,36 @@
 #item-listing .category{
   list-style-type: none;
   display: grid;
-  grid-template-columns: 20% auto 10%;
+  grid-template-columns: 10% auto 25%;
+  grid-gap: 10px;
+  padding: 10px;
+  background: lavender;
+  margin-bottom: 10px;
 }
 #item-listing .category img{
   width: 100%;
+  min-height: 100%;
+  float: left;
+}
+#item-listing .title a{
+  font-size: 16px;
+  display: block;
+}
+#item-listing .crud{
+  text-align: right;
+}
+#item-listing .crud .user{
+  display: block;
+  font-size: 16px;
+  padding-bottom: 5px;
+}
+#item-listing .crud img{
+  height: 30px;
+  width: auto;
+  visibility: hidden;
+  float: right;
+  margin: 0 5px;
+}
+#item-listing .category:hover > .crud img{
+  visibility: visible;
 }

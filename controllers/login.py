@@ -29,5 +29,5 @@ class Login(FlaskView):
 
   @route('/logout/')
   def logout(self):
-    session.pop('email', None)
+    session.pop('logged-in', None)
     return redirect('/')
