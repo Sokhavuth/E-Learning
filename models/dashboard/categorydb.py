@@ -1,4 +1,4 @@
-#models/dashboard/userdb.py
+#models/dashboard/categorydb.py
 import os, psycopg2
 
 class Categorydb():
@@ -51,14 +51,17 @@ class Categorydb():
     self.conn.commit()
     self.conn.close()
 
-  def select(self, amount, category=''):
+  def select(self, amount, category='', page=0):
     self.set_conection()
 
     if category:
       SQL = "SELECT * FROM CATEGORIES WHERE CATEGORY = %s LIMIT 1"
       self.cursor.execute(SQL, (category,))
       result = self.cursor.fetchone()
-
+    elif page:
+      SQL = "SELECT * FROM CATEGORIES ORDER BY CATDATE DESC, CATTIME DESC OFFSET %s ROWS FETCH NEXT %s ROWS ONLY"
+      self.cursor.execute(SQL, (amount*page, amount))
+      result = self.cursor.fetchall()
     else:
       SQL = "SELECT * FROM CATEGORIES ORDER BY CATDATE DESC, CATTIME DESC LIMIT %s"
       self.cursor.execute(SQL, (amount,))

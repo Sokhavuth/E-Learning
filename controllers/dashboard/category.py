@@ -69,3 +69,21 @@ class Category():
       return render_template('dashboard/category.html', data=vdict)
 
     return render_template('login.html', data=vdict)
+
+  def load(self, page):
+    if 'logged-in' in session:
+      vdict = copy.deepcopy(config.vdict)
+      vdict['blog_title'] = 'បង្កើតប្រភេទមេរៀន'
+      vdict['categories'] = self.categorydb.select(vdict['dashboard_max_category'], page=page)
+      vdict['thumbs'] = self.lib.get_thumbs(vdict['categories'], 2)
+      new_list = []
+      for category in vdict['categories']:
+        new_cat = list(category)
+        new_cat[3] = category[3].strftime('%d/%m/%Y') 
+        new_cat[4] = category[4].strftime('%H:%M:%S') 
+        new_list.append(new_cat)
+
+      vdict['categories'] = new_list
+      return vdict
+    else:
+      return render_template('login.html', data=vdict)

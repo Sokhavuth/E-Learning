@@ -33,7 +33,7 @@
   text-align: center;
 }
 #item-listing{
-  padding: 20px;
+  padding: 20px 20px 10px;
 }
 #item-listing .category{
   list-style-type: none;
@@ -70,4 +70,14 @@
 }
 #item-listing .category:hover > .crud img{
   visibility: visible;
+}
+#load-more{
+  list-style-type: none;
+  text-align: center;
+  background: lightgrey;
+  padding-bottom: 10px;
+}
+#load-more img:hover{
+  opacity: .5;
+  cursor: pointer;
 }

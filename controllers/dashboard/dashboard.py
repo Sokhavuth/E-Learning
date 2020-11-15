@@ -20,6 +20,7 @@ class Dashboard(FlaskView):
 
   @route('/category/', methods=['GET', 'POST'])
   def category(self):
+    session['page'] = 0
     return self.cat.get_post()
 
   @route('/category/delete/<category>')
@@ -29,5 +30,10 @@ class Dashboard(FlaskView):
   @route('/category/edit/<category>')
   def edit(self, category):
     return self.cat.edit(category)
+
+  @route('/category/load/')
+  def load(self):
+    session['page'] += 1
+    return self.cat.load(session['page'])
     
 dashboard = Dashboard()
