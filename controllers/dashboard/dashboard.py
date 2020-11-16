@@ -1,22 +1,18 @@
-#controllers/category.py
-import config, copy
-from flask import render_template, session, redirect
+#controllers/dashboard/dashboard.py
+from flask import session
 from flask_classful import FlaskView, route
 from controllers.dashboard.category import Category
+from controllers.dashboard.post import Post
 
 class Dashboard(FlaskView):
   def __init__(self):
     self.cat = Category()
+    self.post = Post()
 
-  @route('/')
+  @route('/', methods=['GET', 'POST'])
   def index(self):
-    vdict = copy.deepcopy(config.vdict)
-    vdict['blog_title'] = 'ទំព័រ​គ្រប់គ្រង'
-
-    if 'logged-in' in session:
-      return render_template('dashboard/dashboard.html', data=vdict)
-    else:
-      return redirect('/login/')
+    session['page'] = 0
+    return self.post.get_post()
 
   @route('/category/', methods=['GET', 'POST'])
   def category(self):

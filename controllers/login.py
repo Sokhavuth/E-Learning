@@ -19,11 +19,11 @@ class Login(FlaskView):
 
       if(self.userdb.check_user(email, password)):
         session['logged-in'] = email
-        return render_template('dashboard/dashboard.html', data=vdict)
+        return redirect('/dashboard/')
         
     else:
       if 'logged-in' in session:
-        return render_template('dashboard/dashboard.html', data=vdict)
+        return redirect('/dashboard/')
             
       return render_template('login.html', data=vdict)
 

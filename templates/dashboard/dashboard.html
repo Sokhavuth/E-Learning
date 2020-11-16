@@ -1,4 +1,4 @@
-<!--templates/dashboard.html-->
+<!--templates/dashboard/dashboard.html-->
 <!DOCTYPE html>
 <html>
   <head>
@@ -42,7 +42,7 @@
       {% block main %}
       <div id="sidebar">
         {% block sidebar %}
-        <div><a href="/posting"><img src="/static/images/posting.png" /></a><a href="/posting">ចុះផ្សាយ​មេរៀន</a></div>
+        <div><a href="/dashboard/"><img src="/static/images/posting.png" /></a><a href="/dashboard/">ចុះផ្សាយ​មេរៀន</a></div>
         <div><a href="/category/"><img src="/static/images/categorizing.png" /></a><a href="/dashboard/category/">បង្កើតប្រភេទមេរៀន</a></div>
         <div><a href="/paging"><img src="/static/images/paging.png" /></a><a href="/paging">បង្កើតទំព័រមាតិកា</a></div>
         <div><a href="/uploading"><img src="/static/images/multimedia.png" /></a><a href="/uploading">ចំលងឯកសារ</a></div>
@@ -52,13 +52,29 @@
       </div>
       <div id="content">
         {% block content %}
-        <textarea name="fcontent" id="editor"></textarea>
-        <div id="bottombar">
-          <input id="submit" class="bottom-widget" type="submit" value="ចុះ​ផ្សាយ">
-          <input id="category-date" value="date" class="bottom-widget category-time" type="text" name="fcategory-date" />
-          <input id="category-time" value="time" class="bottom-widget category-time" type="text" name="fcategory-time" />
-          <input disabled style="background:white;text-align:center;" type='text' value="author" id="category-author" class="bottom-widget category-time" />
-        </div>
+        <form id='post' action='/dashboard/' method="POST" >
+          {% if 'post' in data %}
+          <input id='post-title' value="{{ data['post'][1] }}" name="fpost-title" type="text" placeholder="ប្រភេទ​មេរៀន" required />
+          <textarea name="fcontent" id="editor" >{{ data['post'][2] }}</textarea>
+          {% else: %}
+          <input id='post-title' value="" name="fpost-title" type="text" placeholder="ប្រភេទ​មេរៀន" required />
+          <textarea name="fcontent" id="editor" ></textarea>
+          {% endif %}
+          <div id="bottombar">
+            <input id="submit" class="bottom-widget" type="submit" value="ចុះ​ផ្សាយ">
+            <select id='category'>
+              {% if 'categories' in data %}
+              {% for category in data['categories'] %}
+                <option>{{ category[1] }}</option>
+              {% endfor %}
+              {% endif %}
+            </select>
+            <input id="post-date" value="{{ data['datetime'][0] }}" class="post-time" type="text" name="fpost-date" required />
+            <input id="post-time" value="{{ data['datetime'][1] }}" class="post-time" type="text" name="fpost-time" required />
+            <input disabled type='text' value="{{ session['logged-in'] }}" id="post-author" class="post-time" name="fpost-author" required />
+          </div>
+        </form>
+        <div id="message">{{ data['message'] }}</div>
         <script src="/static/scripts/ckeditor/config.js"></script>
         {% endblock %}
       </div>

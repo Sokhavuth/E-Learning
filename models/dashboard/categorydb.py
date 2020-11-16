@@ -62,6 +62,10 @@ class Categorydb():
       SQL = "SELECT * FROM CATEGORIES ORDER BY CATDATE DESC, CATTIME DESC OFFSET %s ROWS FETCH NEXT %s ROWS ONLY"
       self.cursor.execute(SQL, (amount*page, amount))
       result = self.cursor.fetchall()
+    elif amount == 'all':
+      SQL = "SELECT * FROM CATEGORIES ORDER BY CATDATE DESC, CATTIME DESC"
+      self.cursor.execute(SQL)
+      result = self.cursor.fetchall()
     else:
       SQL = "SELECT * FROM CATEGORIES ORDER BY CATDATE DESC, CATTIME DESC LIMIT %s"
       self.cursor.execute(SQL, (amount,))
