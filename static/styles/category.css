@@ -38,19 +38,19 @@
 #item-listing .category{
   list-style-type: none;
   display: grid;
-  grid-template-columns: 10% auto 25%;
+  grid-template-columns: 15% auto 25%;
   grid-gap: 10px;
   padding: 10px;
   background: lavender;
   margin-bottom: 10px;
 }
-#item-listing .category img{
+#item-listing .category .thumbnail img{
   width: 100%;
   min-height: 100%;
   float: left;
 }
 #item-listing .title a{
-  font-size: 16px;
+  font: 18px/1.5 Oswald, Koulen;
   display: block;
 }
 #item-listing .crud{

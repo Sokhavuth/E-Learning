@@ -31,5 +31,14 @@ class Dashboard(FlaskView):
   def load(self):
     session['page'] += 1
     return self.cat.load(session['page'])
+
+  @route('/post/delete/<id>')
+  def delete(self, id):
+    return self.post.delete(id)
+
+  @route('/post/edit/<id>')
+  def edit(self, id):
+    session['edit'] = id
+    return self.post.edit(id)
     
 dashboard = Dashboard()

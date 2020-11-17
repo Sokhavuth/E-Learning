@@ -11,7 +11,7 @@ class Login(FlaskView):
   @route('/', methods=['GET', 'POST'])
   def login(self):
     vdict = copy.deepcopy(config.vdict)
-    vdict['blog_title'] = 'ទំព័រ​គ្រប់គ្រង'
+    vdict['blog_title'] = 'ទំព័រ​ចុះឈ្មោះ'
     
     if request.method == 'POST':
       email = request.form['femail']

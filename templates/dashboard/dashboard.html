@@ -55,14 +55,14 @@
         <form id='post' action='/dashboard/' method="POST" >
           {% if 'post' in data %}
           <input id='post-title' value="{{ data['post'][1] }}" name="fpost-title" type="text" placeholder="ប្រភេទ​មេរៀន" required />
-          <textarea name="fcontent" id="editor" >{{ data['post'][2] }}</textarea>
+          <textarea name="fcontent" id="editor" >{{ data['post'][3] }}</textarea>
           {% else: %}
           <input id='post-title' value="" name="fpost-title" type="text" placeholder="ប្រភេទ​មេរៀន" required />
           <textarea name="fcontent" id="editor" ></textarea>
           {% endif %}
           <div id="bottombar">
             <input id="submit" class="bottom-widget" type="submit" value="ចុះ​ផ្សាយ">
-            <select id='category'>
+            <select id='category' name="fcategory">
               {% if 'categories' in data %}
               {% for category in data['categories'] %}
                 <option>{{ category[1] }}</option>
@@ -82,7 +82,56 @@
     </div>
 
     {% block item_listing %}
-    <div id="item-listing" class="item-listing region"></div>
+    <ul id="item-listing" class="item-listing region">
+      {% for v in range(data['posts']|length) %}
+      <li class="post">
+        <a class="thumbnail" href="/post/{{ data['posts'][v][0] }}"><img src="{{data['thumbs'][v]}}" /></a>
+        <div class='title'>
+          <a href="/post/{{ data['posts'][v][0] }}">{{ data['posts'][v][1] }}</a>
+          <a href="/category/{{ data['posts'][v][2] }}" class="category">{{ data['posts'][v][2] }}</a>
+          <span>{{ data['posts'][v][4].strftime('%d/%m/%Y') }}</span>
+        </div>
+        <div class="crud">
+          <a class="user">{{ data['posts'][v][6] }}</a>
+          <a href='/dashboard/post/delete/{{ data["posts"][v][0] }}'><img src="/static/images/delete.png" /></a>
+          <a href='/dashboard/post/edit/{{ data["posts"][v][0] }}'><img src="/static/images/edit.png" /></a>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    <div id="load-more" class="load-more region">
+      <img onclick="lib.load_items('/dashboard/post/load/')" src="/static/images/load-more.png" />
+      <script> 
+        const lib = new Lib();
+        function listing_items(data){
+          var html = '';
+          for(var v=0; v<data['categories'].length; v++){
+            html += '<li class="category">';
+            html += `<a class="thumbnail" href="/category/${ data['categories'][v][1] }"><img src="${data['thumbs'][v]}" /></a>`;
+            html += `<div class='title'>`;
+            html += `<a href="/category/${ data['categories'][v][1] }">${ data['categories'][v][1] }</a>`;
+            html += `<span>${ data['categories'][v][3] }</span>`;
+            html += `</div>`;
+            html += `<div class="crud">`;
+            html += `<a class="user">${ data['categories'][v][5] }</a>`;
+            html += `<a href='/dashboard/category/delete/${ data["categories"][v][1] }'><img src="/static/images/delete.png" /></a>`;
+            html += `<a href='/dashboard/category/edit/${ data["categories"][v][1] }'><img src="/static/images/edit.png" /></a>`;
+            html += `</div>`;
+            html += `</li>`;
+          }
+
+          $('#item-listing').append(html);
+          $('#load-more img').attr('src', '/static/images/load-more.png')
+        }
+      </script>
+    </div>
+    <script>
+      $(document).ready(function(){
+        var width = $('.post .thumbnail').css('width');
+        var height = parseInt(width)*9/16;
+        //$('.post .thumbail').css('height', height);
+      });
+    </script>
     {% endblock %}
 
     <div id="footer" class="footer region">
