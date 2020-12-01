@@ -44,10 +44,17 @@
   background: lavender;
   margin-bottom: 10px;
 }
+#item-listing .category .thumbnail{
+  position: relative;
+  padding-top: 56.25%;
+  overflow: hidden;
+}
 #item-listing .category .thumbnail img{
   width: 100%;
   min-height: 100%;
-  float: left;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 #item-listing .title a{
   font: 18px/1.5 Oswald, Koulen;

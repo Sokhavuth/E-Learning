@@ -54,10 +54,10 @@
         {% block content %}
         <form id='post' action='/dashboard/' method="POST" >
           {% if 'post' in data %}
-          <input id='post-title' value="{{ data['post'][1] }}" name="fpost-title" type="text" placeholder="ប្រភេទ​មេរៀន" required />
+          <input id='post-title' value="{{ data['post'][1] }}" name="fpost-title" type="text" placeholder="ចំណង​ជើង​មេរៀន" required />
           <textarea name="fcontent" id="editor" >{{ data['post'][3] }}</textarea>
           {% else: %}
-          <input id='post-title' value="" name="fpost-title" type="text" placeholder="ប្រភេទ​មេរៀន" required />
+          <input id='post-title' value="" name="fpost-title" type="text" placeholder="ចំណង​ជើង​​មេរៀន" required />
           <textarea name="fcontent" id="editor" ></textarea>
           {% endif %}
           <div id="bottombar">
@@ -137,11 +137,13 @@
       <img onclick="lib.load_items('/dashboard/post/load/', 'posts')" src="/static/images/load-more.png" />
     </div>
     <script>
+      /*
       $(document).ready(function(){
         var width = $('.post .thumbnail').css('width');
         var height = parseInt(width)*9/16;
         $('.post .thumbnail').css('height', height);
       });
+      */
     </script>
     {% endblock %}
 

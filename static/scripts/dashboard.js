@@ -41,11 +41,6 @@ class Lib{
 
     $('#item-listing').append(html);
     $('#load-more img').attr('src', '/static/images/load-more.png')
-
-    var width = $('.post .thumbnail').css('width')
-    var height = parseInt(width)*9/16;
-    $('.post .thumbnail').css('height', height);
-
   }
 
   listing_categories(data){
@@ -68,9 +63,6 @@ class Lib{
     $('#item-listing').append(html);
     $('#load-more img').attr('src', '/static/images/load-more.png')
 
-    var width = $('.category .thumbnail').css('width');
-    var height = parseInt(width)*9/16;
-    $('.category .thumbnail').css('height', height);
   }
 
   getVideoForm(event){
