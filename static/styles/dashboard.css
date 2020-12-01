@@ -104,10 +104,22 @@
   background: lavender;
   margin-bottom: 10px;
 }
+#item-listing .post .thumbnail{
+  overflow: hidden;
+  position: relative;
+}
 #item-listing .post .thumbnail img{
   width: 100%;
   min-height: 100%;
   float: left;
+}
+#item-listing .post .thumbnail .play-icon{
+  position: absolute;
+  width: 25%;
+  min-height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
 }
 #item-listing .title a{
   font: 18px/1.5 Oswald, Koulen;
@@ -144,4 +156,34 @@
 #load-more img:hover{
   opacity: .5;
   cursor: pointer;
+}
+#video{
+  padding: 20px;
+}
+#video span, #video input{
+  font: 14px/1.5 Vidaloka, OdorMeanChey !important;
+}
+#video .left-part{
+  width: 45%;
+  display: grid;
+  grid-template-columns: 20px auto;
+  align-items: center;
+  float: left;
+  margin-bottom: 20px;
+}
+#video .right-part{
+  display: grid;
+  grid-template-columns: 25% auto;
+  align-items: center;
+  grid-gap: 5px;
+}
+#video .right-part input{
+  padding: 5px;
+}
+#video .right-part span{
+  text-align: right !important;
+}
+#video .right-part span input{
+  position: relative;
+  top: 2px;
 }

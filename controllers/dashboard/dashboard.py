@@ -40,5 +40,10 @@ class Dashboard(FlaskView):
   def edit(self, id):
     session['edit'] = id
     return self.post.edit(id)
+
+  @route('/post/load/')
+  def load_post(self):
+    session['page'] += 1
+    return self.post.load(session['page'])
     
 dashboard = Dashboard()

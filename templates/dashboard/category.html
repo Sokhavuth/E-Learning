@@ -49,30 +49,7 @@
   {% endfor %}
 </ul>
 <div id="load-more" class="load-more region">
-  <img onclick="lib.load_items('/dashboard/category/load/')" src="/static/images/load-more.png" />
-  <script> 
-    const lib = new Lib();
-    function listing_items(data){
-      var html = '';
-      for(var v=0; v<data['categories'].length; v++){
-        html += '<li class="category">';
-        html += `<a class="thumbnail" href="/category/${ data['categories'][v][1] }"><img src="${data['thumbs'][v]}" /></a>`;
-        html += `<div class='title'>`;
-        html += `<a href="/category/${ data['categories'][v][1] }">${ data['categories'][v][1] }</a>`;
-        html += `<span>${ data['categories'][v][3] }</span>`;
-        html += `</div>`;
-        html += `<div class="crud">`;
-        html += `<a class="user">${ data['categories'][v][5] }</a>`;
-        html += `<a href='/dashboard/category/delete/${ data["categories"][v][1] }'><img src="/static/images/delete.png" /></a>`;
-        html += `<a href='/dashboard/category/edit/${ data["categories"][v][1] }'><img src="/static/images/edit.png" /></a>`;
-        html += `</div>`;
-        html += `</li>`;
-      }
-
-      $('#item-listing').append(html);
-      $('#load-more img').attr('src', '/static/images/load-more.png')
-    }
-  </script>
+  <img onclick="lib.load_items('/dashboard/category/load/', 'categories')" src="/static/images/load-more.png" />
 </div>
 <script>
   var width = $('#category .thumbnail').css('width');

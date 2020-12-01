@@ -19,6 +19,10 @@
     {% endblock %}
   </head>
   <body>
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
+    
     <div id="header">
       {% block header %}
       <header id="blog-title" class="blog-title region">
@@ -40,7 +44,7 @@
         </div>
         <div id="title">
           {{data['blog_title']}}
-          <div class="description">ចំណេះវិជ្ជា​ជាឃ្លាំងប្រាក់</div>
+          <div class="description">{{ data['blog_description'] }}</div>
         </div>
         <div id="blog-search">
           <form class="search" action="/search/frontend" method="post">
@@ -52,7 +56,7 @@
       <nav id="main-menu" class="main-menu" > 
         <div class="Menu region">
           <div class="topnav" id="myTopnav">
-            <a href="#home" class="active">ទំព័រដើម</a>
+            <a href="/" class="active">ទំព័រដើម</a>
             <a href="#news">ព័ត៌មាន</a>
             <a href="#contact">ទំនាក់ទំនង</a>
             <a href="#about">អំពីយើង​ខ្ញុំ</a>

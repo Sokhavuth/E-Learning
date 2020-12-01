@@ -69,13 +69,41 @@
               {% endfor %}
               {% endif %}
             </select>
+            {% if 'post' in data %}
+            <script>$(`#category option:contains("{{ data['post'][2] }}")`).attr('selected', 'selected');</script>
+            {% endif %}
             <input id="post-date" value="{{ data['datetime'][0] }}" class="post-time" type="text" name="fpost-date" required />
             <input id="post-time" value="{{ data['datetime'][1] }}" class="post-time" type="text" name="fpost-time" required />
             <input disabled type='text' value="{{ session['logged-in'] }}" id="post-author" class="post-time" name="fpost-author" required />
+            {% if 'post' in data %}
+            <input type="hidden" name="fvidata" value="{{ data['post'][7] }}" />
+            {% else %}
+            <input type="hidden" name="fvidata" value="" />
+            {% endif %}
           </div>
         </form>
         <div id="message">{{ data['message'] }}</div>
         <script src="/static/scripts/ckeditor/config.js"></script>
+
+        <form id="video" onsubmit="return lib.getVideoForm(event);">
+          <section class="left-part">
+            <input type="radio" name="vid-type" value="youtube" checked> <span>YouTube</span>
+            <input type="radio" name="vid-type" value="youtubepl" > <span>YouTube Playlist</span>
+            <input type="radio" name="vid-type" value="fbvid"> <span>Facebook</span>
+            <input type="radio" name="vid-type" value="googledrive"> <span>Goolge Drive</span>
+            <input type="radio" name="vid-type" value="dailymotion"> <span>Dailymotion</span>
+            <input type="radio" name="vid-type" value="vimeo"> <span>Vimeo</span>
+            <input type="radio" name="vid-type" value="okvid"> <span>OK</span>
+          </section>
+
+          <section class="right-part">
+            <span>Video ID: </span><input type="text" name="video-id" required >
+            <span>Playlist: <input type="checkbox" id="playlist" name="fplaylist" onclick="lib.enable()"></span>
+            <input disabled type="text" name="vid-title" >
+            <span></span><input type="submit" value="បន្ថែមវីដេអូ" />
+          </section>
+        </form>
+
         {% endblock %}
       </div>
       {% endblock %}
@@ -85,7 +113,13 @@
     <ul id="item-listing" class="item-listing region">
       {% for v in range(data['posts']|length) %}
       <li class="post">
-        <a class="thumbnail" href="/post/{{ data['posts'][v][0] }}"><img src="{{data['thumbs'][v]}}" /></a>
+        <a class="thumbnail" href="/post/{{ data['posts'][v][0] }}">
+          <img src="{{data['thumbs'][v]}}" />
+          {% if data['posts'][v][7]|length %}
+          <img class="play-icon" src="/static/images/play.png" />
+          {% endif %}
+        </a>
+        </script>
         <div class='title'>
           <a href="/post/{{ data['posts'][v][0] }}">{{ data['posts'][v][1] }}</a>
           <a href="/category/{{ data['posts'][v][2] }}" class="category">{{ data['posts'][v][2] }}</a>
@@ -100,36 +134,13 @@
       {% endfor %}
     </ul>
     <div id="load-more" class="load-more region">
-      <img onclick="lib.load_items('/dashboard/post/load/')" src="/static/images/load-more.png" />
-      <script> 
-        const lib = new Lib();
-        function listing_items(data){
-          var html = '';
-          for(var v=0; v<data['categories'].length; v++){
-            html += '<li class="category">';
-            html += `<a class="thumbnail" href="/category/${ data['categories'][v][1] }"><img src="${data['thumbs'][v]}" /></a>`;
-            html += `<div class='title'>`;
-            html += `<a href="/category/${ data['categories'][v][1] }">${ data['categories'][v][1] }</a>`;
-            html += `<span>${ data['categories'][v][3] }</span>`;
-            html += `</div>`;
-            html += `<div class="crud">`;
-            html += `<a class="user">${ data['categories'][v][5] }</a>`;
-            html += `<a href='/dashboard/category/delete/${ data["categories"][v][1] }'><img src="/static/images/delete.png" /></a>`;
-            html += `<a href='/dashboard/category/edit/${ data["categories"][v][1] }'><img src="/static/images/edit.png" /></a>`;
-            html += `</div>`;
-            html += `</li>`;
-          }
-
-          $('#item-listing').append(html);
-          $('#load-more img').attr('src', '/static/images/load-more.png')
-        }
-      </script>
+      <img onclick="lib.load_items('/dashboard/post/load/', 'posts')" src="/static/images/load-more.png" />
     </div>
     <script>
       $(document).ready(function(){
         var width = $('.post .thumbnail').css('width');
         var height = parseInt(width)*9/16;
-        //$('.post .thumbail').css('height', height);
+        $('.post .thumbnail').css('height', height);
       });
     </script>
     {% endblock %}

@@ -31,7 +31,8 @@ class Postdb():
       CONTENT TEXT,
       CATDATE DATE,
       CATTIME TIME,
-      AUTHOR TEXT
+      AUTHOR TEXT,
+      VIDEO TEXT
     )'''
 
     self.cursor.execute(SQL)
@@ -41,7 +42,7 @@ class Postdb():
   def insert(self, *post):
     self.set_conection()
 
-    self.cursor.execute("INSERT INTO POSTS (ID, TITLE, CATEGORY, CONTENT, CATDATE, CATTIME, AUTHOR) VALUES %s ", (post,))
+    self.cursor.execute("INSERT INTO POSTS (ID, TITLE, CATEGORY, CONTENT, CATDATE, CATTIME, AUTHOR, VIDEO) VALUES %s ", (post,))
   
     self.conn.commit()
     self.conn.close()
@@ -49,7 +50,7 @@ class Postdb():
   def update(self, *post):
     self.set_conection()
 
-    sql = "UPDATE POSTS SET ID = %s, TITLE = %s, CATEGORY = %s, CONTENT = %s, CATDATE = %s, CATTIME = %s, AUTHOR = %s WHERE ID = '"+post[0]+"'"
+    sql = "UPDATE POSTS SET ID = %s, TITLE = %s, CATEGORY = %s, CONTENT = %s, CATDATE = %s, CATTIME = %s, AUTHOR = %s, VIDEO = %s WHERE ID = '"+post[0]+"'"
     self.cursor.execute(sql, post)
 
     self.conn.commit()
@@ -57,10 +58,10 @@ class Postdb():
 
   def select(self, amount=0, id=0, category='', page=0):
     self.set_conection()
-
+    
     if category:
-      SQL = "SELECT * FROM POSTS ORDER BY CATDATE DESC, CATTIME DESC WHERE CATEGORY = %s LIMIT %s"
-      self.cursor.execute(SQL, (category, amount))
+      SQL = "SELECT * FROM POSTS WHERE CATEGORY = %s ORDER BY CATDATE DESC, CATTIME DESC OFFSET %s ROWS FETCH NEXT %s ROWS ONLY"
+      self.cursor.execute(SQL, (category, amount*page, amount))
       result = self.cursor.fetchall()
     elif id:
       SQL = "SELECT * FROM POSTS WHERE ID = %s LIMIT 1"

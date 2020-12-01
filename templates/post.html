@@ -1,0 +1,41 @@
+<!--templates/post.html-->
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+<link href="/static/styles/post.css" rel="stylesheet" >
+<script src="/static/scripts/post.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<h3><span class="post-title">{{ data['post'][1] }}</span> <span class="post-date">{{ data['post'][4].strftime('%d/%m/%Y') }}</span></h3>
+
+<p class="post-meta">
+  ជំពូកៈ <a href="/category/{{ data['post'][2] }}">{{ data['post'][2] }}</a>
+  {% if 'logged-in' in session %}
+  <span><a href="/dashboard/post/edit/{{ data['post'][0] }}"><img src="/static/images/edit.png" /></a>
+    <a href="/dashboard/post/delete/{{ data['post'][0] }}"><img src="/static/images/delete.png" /></a>
+  </span>
+  {% endif %}
+</p>
+
+<article class="post-body">{{ data['post'][3]|safe }}</a></article>
+
+{% if data['post'][7]|length > 0 %}
+<div id="video-wrapper" style="width:100%;"></div>
+<script>post.setVideo(`{{ data['post'][7]|safe }}`);</script> 
+{% endif %}
+
+<div style="margin-top:20px;" id="disqus_thread"></div>
+<script>
+  (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://khmerweb.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+{% endblock %}

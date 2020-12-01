@@ -1,0 +1,31 @@
+<!--templates/category.html-->
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+<link href="/static/styles/catlisting.css" rel="stylesheet" >
+<script src="/static/scripts/category.js"></script>
+{% endblock %}
+
+{% block content %}
+<div id="container">
+{% for v in range(data['posts']|length) %}
+  <div class="post-wrapper">
+    <a class="wrapper" href="/post/{{data['posts'][v][0]}}">
+      <img src="{{ data['thumbs'][v] }}" />
+      {% if data['videos'][v] %}
+      <img class="play-icon" src="/static/images/play.png" />
+      {% endif %}
+      <p class="post-date">{{ data['posts'][v][4] }}</p>
+    </a>
+
+    <a class="post-title" href="/post/{{ data['posts'][v][0] }}">{{ data['posts'][v][1] }}</a>
+  </div>
+{% endfor %}
+</div>
+
+<div id="load-more" class="load-more region">
+  <img onclick="category.loadPost(`{{ data['category'] }}`)" src="/static/images/load-more.png" />
+</div>
+
+{% endblock %}

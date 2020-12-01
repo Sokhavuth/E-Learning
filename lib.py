@@ -1,4 +1,5 @@
 #lib.py
+import json
 from pytz import timezone
 from datetime import datetime 
 from bs4 import BeautifulSoup
@@ -36,3 +37,9 @@ class Lib():
       thumbs.append(src[0])
 
     return thumbs
+
+  def get_video_data(self, items, index):
+    item_contents = [str(BeautifulSoup(item[index], "html.parser")) for item in items]
+    
+    return item_contents
+    

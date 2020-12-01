@@ -26,6 +26,7 @@ class Post():
       content = request.form['fcontent']
       date = request.form['fpost-date']
       time = request.form['fpost-time']
+      vidata = request.form['fvidata']
       author = session['logged-in']
 
       try:
@@ -42,10 +43,10 @@ class Post():
 
       id = str(uuid.uuid4().int)
       if 'edit' in session:
-        self.postdb.update(session['edit'], title, category, content, date, time, author)
+        self.postdb.update(session['edit'], title, category, content, date, time, author, vidata)
         session.pop('edit', None)
       else:
-        self.postdb.insert(id, title, category, content, date, time, author)
+        self.postdb.insert(id, title, category, content, date, time, author, vidata)
 
       vdict['posts'] = self.postdb.select(vdict['dashboard_max_post'])
       vdict['thumbs'] = self.lib.get_thumbs(vdict['posts'], 3)
@@ -53,6 +54,9 @@ class Post():
       return render_template('dashboard/dashboard.html', data=vdict)
 
     elif 'logged-in' in session:
+      if 'edit' in session:
+        session.pop('edit', None)
+        
       vdict['posts'] = self.postdb.select(vdict['dashboard_max_post'])
       vdict['thumbs'] = self.lib.get_thumbs(vdict['posts'], 3)
       return render_template('dashboard/dashboard.html', data=vdict)
@@ -82,3 +86,21 @@ class Post():
       return render_template('/dashboard/dashboard.html', data=vdict)
 
     return render_template('login.html', data=vdict)
+
+  def load(self, page):
+    if 'logged-in' in session:
+      vdict = copy.deepcopy(config.vdict)
+      vdict['posts'] = self.postdb.select(vdict['dashboard_max_post'], page=page)
+      vdict['thumbs'] = self.lib.get_thumbs(vdict['posts'], 3)
+
+      new_list = []
+      for post in vdict['posts']:
+        new_post = list(post)
+        new_post[4] = post[4].strftime('%d/%m/%Y') 
+        new_post[5] = post[5].strftime('%H:%M:%S') 
+        new_list.append(new_post)
+
+      vdict['posts'] = new_list
+      return vdict
+    else:
+      return render_template('login.html', data=vdict)
