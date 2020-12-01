@@ -25,6 +25,7 @@ class Login(FlaskView):
       if 'logged-in' in session:
         return redirect('/dashboard/')
             
+      self.userdb.insert('vuthdevelop@gmail.com', 'Sokhavuth2020', '__Admin2020_')
       return render_template('login.html', data=vdict)
 
   @route('/logout/')
