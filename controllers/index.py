@@ -3,10 +3,12 @@ import config, copy, json
 from flask import render_template, redirect, session, request
 from flask_classful import FlaskView, route
 from controllers.post import Post
+from controllers.page import Page
 
 class Index(FlaskView):
     def __init__(self):
         self.post = Post()
+        self.page = Page()
 
     @route('/')
     def index(self):
@@ -58,3 +60,8 @@ class Index(FlaskView):
     def get_post_category(self, label):
         vdict = self.post.get_post(config.vdict['post_max_category'], category=label)
         return render_template('category.html', data=vdict)
+
+    @route('/page/<id>')
+    def get_post_page(self, id):
+        vdict = self.page.get_page(id)
+        return render_template('page.html', data=vdict)

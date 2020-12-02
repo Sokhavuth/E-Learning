@@ -8,11 +8,34 @@ class Lib{
           lib.listing_categories(data);
         }else if(type === "posts"){
           lib.listing_posts(data);
+        }else if(type === 'pages'){
+          lib.listing_pages(data);
         }
       }else{
         alert('Fail to connect to server.');
       }
     });
+  }
+
+  listing_pages(data){
+    var html = '';
+    for(var v=0; v<data['pages'].length; v++){
+      html += '<li class="page">';
+      html += `<a class="thumbnail" href="/page/${ data['pages'][v][0] }"><img src="${data['thumbs'][v]}" /></a>`;
+      html += `<div class='title'>`;
+      html += `<a href="/page/${ data['pages'][v][0] }">${ data['pages'][v][1] }</a>`;
+      html += `<span>${ data['pages'][v][3] }</span>`;
+      html += `</div>`;
+      html += `<div class="crud">`;
+      html += `<a class="user">${ data['pages'][v][5] }</a>`;
+      html += `<a href='/dashboard/page/delete/${ data["pages"][v][0] }'><img src="/static/images/delete.png" /></a>`;
+      html += `<a href='/dashboard/page/edit/${ data["pages"][v][0] }'><img src="/static/images/edit.png" /></a>`;
+      html += `</div>`;
+      html += `</li>`;
+    }
+
+    $('#item-listing').append(html);
+    $('#load-more img').attr('src', '/static/images/load-more.png')
   }
 
   listing_posts(data){
@@ -79,6 +102,7 @@ class Lib{
     json.playlist = playlist;
 
     $("input:hidden[name=fvidata]").val(JSON.stringify(json));
+    alert('វីដេអូ​ត្រូវ​បាន​បញ្ចូល​ទៅ​ក្នុង​ការផ្សាយ​។')
   }
 
   enable(){

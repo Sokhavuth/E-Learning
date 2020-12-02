@@ -3,11 +3,13 @@ from flask import session
 from flask_classful import FlaskView, route
 from controllers.dashboard.category import Category
 from controllers.dashboard.post import Post
+from controllers.dashboard.page import Page
 
 class Dashboard(FlaskView):
   def __init__(self):
     self.cat = Category()
     self.post = Post()
+    self.page = Page()
 
   @route('/', methods=['GET', 'POST'])
   def index(self):
@@ -45,5 +47,24 @@ class Dashboard(FlaskView):
   def load_post(self):
     session['page'] += 1
     return self.post.load(session['page'])
+
+  @route('/page/', methods=['GET', 'POST'])
+  def get_post_page(self):
+    session['page'] = 0
+    return self.page.get_post_page()
+
+  @route('/page/edit/<id>')
+  def edit_page(self, id):
+    session['edit'] = id
+    return self.page.edit(id)
+
+  @route('/page/delete/<id>')
+  def delete(self, id):
+    return self.page.delete(id)
+
+  @route('/page/load/')
+  def load_post(self):
+    session['page'] += 1
+    return self.page.load(session['page'])
     
 dashboard = Dashboard()

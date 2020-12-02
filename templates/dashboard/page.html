@@ -1,0 +1,54 @@
+<!--templates/dasboard/category.html-->
+{% extends 'dashboard/dashboard.html' %}
+
+{% block head %}
+{{ super() }}
+<link href="/static/styles/page.css" rel="stylesheet" >
+{% endblock %}
+
+{% block content %}
+  <form id='page' action='/dashboard/page/' method="POST" >
+    {% if 'page' in data %}
+    <input id='page-title' value="{{ data['page'][1] }}" name="fpage-title" type="text" placeholder="ចំណងជើងទំព័រ" required />
+    <textarea name="fcontent" id="editor" >{{ data['page'][2] }}</textarea>
+    {% else: %}
+    <input id='page-title' value="" name="fpage-title" type="text" placeholder="ចំណងជើង​ទំព័រ" required />
+    <textarea name="fcontent" id="editor" ></textarea>
+    {% endif %}
+    <div id="bottombar">
+      <input id="submit" class="bottom-widget" type="submit" value="ចុះ​ផ្សាយ">
+      <input id="page-date" value="{{ data['datetime'][0] }}" class="bottom-widget page-time" type="text" name="fpage-date" required />
+      <input id="page-time" value="{{ data['datetime'][1] }}" class="bottom-widget page-time" type="text" name="fpage-time" required />
+      <input disabled type='text' value="{{ session['logged-in'] }}" id="page-author" class="page-time" name="fpage-author" required />
+    </div>
+  </form>
+  <div id="message">{{ data['message'] }}</div>
+  <script src="/static/scripts/ckeditor/config.js"></script>
+{% endblock %}
+
+{% block item_listing %}
+<ul id="item-listing" class="item-listing region">
+  {% if 'pages' in data %}
+  {% for v in range(data['pages']|length) %}
+  <li class="page">
+    <a class="thumbnail" href="/page/{{ data['pages'][v][0] }}">
+      <img src="{{data['thumbs'][v]}}" />
+    </a>
+
+    <div class='title'>
+      <a href="/page/{{ data['pages'][v][0] }}">{{ data['pages'][v][1] }}</a>
+      <span>{{ data['pages'][v][3].strftime('%d/%m/%Y') }}</span>
+    </div>
+    <div class="crud">
+      <a class="user">{{ data['pages'][v][-1] }}</a>
+      <a href='/dashboard/page/delete/{{ data["pages"][v][0] }}'><img src="/static/images/delete.png" /></a>
+      <a href='/dashboard/page/edit/{{ data["pages"][v][0] }}'><img src="/static/images/edit.png" /></a>
+    </div>
+  </li>
+  {% endfor %}
+  {% endif %}
+</ul>
+<div id="load-more" class="load-more region">
+  <img onclick="lib.load_items('/dashboard/page/load/', 'pages')" src="/static/images/load-more.png" />
+</div>
+{% endblock %}
