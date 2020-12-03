@@ -22,24 +22,24 @@ class Dashboard(FlaskView):
     return self.cat.get_post()
 
   @route('/category/delete/<category>')
-  def delete(self, category):
+  def delete_category(self, category):
     return self.cat.delete(category)
 
   @route('/category/edit/<category>')
-  def edit(self, category):
+  def edit_category(self, category):
     return self.cat.edit(category)
 
   @route('/category/load/')
-  def load(self):
+  def load_category(self):
     session['page'] += 1
     return self.cat.load(session['page'])
 
   @route('/post/delete/<id>')
-  def delete(self, id):
+  def delete_post(self, id):
     return self.post.delete(id)
 
   @route('/post/edit/<id>')
-  def edit(self, id):
+  def edit_post(self, id):
     session['edit'] = id
     return self.post.edit(id)
 
@@ -59,11 +59,11 @@ class Dashboard(FlaskView):
     return self.page.edit(id)
 
   @route('/page/delete/<id>')
-  def delete(self, id):
+  def delete_page(self, id):
     return self.page.delete(id)
 
   @route('/page/load/')
-  def load_post(self):
+  def load_page(self):
     session['page'] += 1
     return self.page.load(session['page'])
     
