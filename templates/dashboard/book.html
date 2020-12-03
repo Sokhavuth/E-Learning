@@ -1,0 +1,52 @@
+<!--templates/dasboard/category.html-->
+{% extends 'dashboard/dashboard.html' %}
+
+{% block head %}
+{{ super() }}
+<link href="/static/styles/book.css" rel="stylesheet" >
+{% endblock %}
+
+{% block content %}
+  <form id='book' action='/dashboard/book/' method="POST" >
+    {% if 'book' in data %}
+    <input id='book-title' value="{{ data['book'][1] }}" name="fbook-title" type="text" placeholder="ចំណងជើងសៀវភៅ" required />
+    <textarea name="fcontent" id="editor" >{{ data['book'][2] }}</textarea>
+    {% else: %}
+    <input id='book-title' value="" name="fbook-title" type="text" placeholder="ចំណងជើង​សៀវភៅ" required />
+    <textarea name="fcontent" id="editor" ></textarea>
+    {% endif %}
+    <div id="bottombar">
+      <input id="submit" class="bottom-widget" type="submit" value="ចុះ​ផ្សាយ">
+      <input id="book-date" value="{{ data['datetime'][0] }}" class="bottom-widget book-time" type="text" name="fbook-date" required />
+      <input id="book-time" value="{{ data['datetime'][1] }}" class="bottom-widget book-time" type="text" name="fbook-time" required />
+      <input disabled type='text' value="{{ session['logged-in'] }}" id="book-author" class="book-time" name="fbook-author" required />
+    </div>
+  </form>
+  <div id="message">{{ data['message'] }}</div>
+  <script src="/static/scripts/ckeditor/config.js"></script>
+{% endblock %}
+
+{% block item_listing %}
+<ul id="item-listing" class="item-listing region">
+  {% if 'books' in data %}
+  {% for v in range(data['books']|length) %}
+  <li class="book">
+    <a class="thumbnail" href="/book/{{ data['books'][v][0] }}"><img src="{{data['thumbs'][v]}}" /></a>
+
+    <div class='title'>
+      <a href="/book/{{ data['books'][v][0] }}">{{ data['books'][v][1] }}</a>
+      <span>{{ data['books'][v][3].strftime('%d/%m/%Y') }}</span>
+    </div>
+    <div class="crud">
+      <a class="user">{{ data['books'][v][-1] }}</a>
+      <a href='/dashboard/book/delete/{{ data["books"][v][0] }}'><img src="/static/images/delete.png" /></a>
+      <a href='/dashboard/book/edit/{{ data["books"][v][0] }}'><img src="/static/images/edit.png" /></a>
+    </div>
+  </li>
+  {% endfor %}
+  {% endif %}
+</ul>
+<div id="load-more" class="load-more region">
+  <img onclick="lib.load_items('/dashboard/book/load/', 'books')" src="/static/images/load-more.png" />
+</div>
+{% endblock %}

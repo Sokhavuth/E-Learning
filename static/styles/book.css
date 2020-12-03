@@ -1,0 +1,88 @@
+/*static/styles/category.css*/
+#bottombar{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+#book-title{
+  width: 100%;
+  padding: 5px 10px;
+  font: 16px/1.5 Oswald, Koulen;
+}
+::placeholder{
+  opacity: .4;
+}
+#bottombar #submit, 
+#bottombar #book-author,
+#bottombar #book-date,
+#bottombar #book-time{
+  font: 14px/1.5 Vidaloka, OdorMeanChey !important;
+  padding: 5px;
+  text-align: center;
+}
+#bottombar #submit{
+  padding: 3px 20px;
+}
+#bottombar #book-author{
+  padding: 6px;
+  background:white;
+  text-align:center;
+}
+#message{
+  text-align: center;
+}
+#item-listing{
+  padding: 20px 20px 10px;
+}
+#item-listing .book{
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 15% auto 25%;
+  grid-gap: 10px;
+  padding: 10px;
+  background: lavender;
+  margin-bottom: 10px;
+}
+#item-listing .book .thumbnail{
+  position: relative;
+  padding-top: 140%;
+  overflow: hidden;
+}
+#item-listing .book .thumbnail img{
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#item-listing .title a{
+  font: 18px/1.5 Oswald, Koulen;
+  display: block;
+}
+#item-listing .crud{
+  text-align: right;
+}
+#item-listing .crud .user{
+  display: block;
+  font-size: 16px;
+  padding-bottom: 5px;
+}
+#item-listing .crud img{
+  height: 30px;
+  width: auto;
+  visibility: hidden;
+  float: right;
+  margin: 0 5px;
+}
+#item-listing .book:hover > .crud img{
+  visibility: visible;
+}
+#load-more{
+  list-style-type: none;
+  text-align: center;
+  background: lightgrey;
+  padding-bottom: 10px;
+}
+#load-more img:hover{
+  opacity: .5;
+  cursor: pointer;
+}

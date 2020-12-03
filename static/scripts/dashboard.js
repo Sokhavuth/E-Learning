@@ -10,11 +10,34 @@ class Lib{
           lib.listing_posts(data);
         }else if(type === 'pages'){
           lib.listing_pages(data);
+        }else if(type === 'books'){
+          lib.listing_books(data);
         }
       }else{
         alert('Fail to connect to server.');
       }
     });
+  }
+
+  listing_books(data){
+    var html = '';
+    for(var v=0; v<data['books'].length; v++){
+      html += '<li class="book">';
+      html += `<a class="thumbnail" href="/book/${ data['books'][v][0] }"><img src="${data['thumbs'][v]}" /></a>`;
+      html += `<div class='title'>`;
+      html += `<a href="/book/${ data['books'][v][0] }">${ data['books'][v][1] }</a>`;
+      html += `<span>${ data['books'][v][3] }</span>`;
+      html += `</div>`;
+      html += `<div class="crud">`;
+      html += `<a class="user">${ data['books'][v][5] }</a>`;
+      html += `<a href='/dashboard/book/delete/${ data["books"][v][0] }'><img src="/static/images/delete.png" /></a>`;
+      html += `<a href='/dashboard/book/edit/${ data["books"][v][0] }'><img src="/static/images/edit.png" /></a>`;
+      html += `</div>`;
+      html += `</li>`;
+    }
+
+    $('#item-listing').append(html);
+    $('#load-more img').attr('src', '/static/images/load-more.png')
   }
 
   listing_pages(data){
