@@ -73,3 +73,8 @@ class Index(FlaskView):
     def load_book(self):
         ajax = request.args.get('ajax', 0, type=int)
         return self.book.load(page=ajax)
+
+    @route('/book/<id>')
+    def get_post_book(self, id):
+        vdict = self.book.get_book(id)
+        return render_template('book.html', data=vdict)

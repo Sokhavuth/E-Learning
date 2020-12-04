@@ -3,22 +3,22 @@
 
 {% block head %}
 {{ super() }}
-<link href="/static/styles/fpage.css" rel="stylesheet" >
+<link href="/static/styles/fbook.css" rel="stylesheet" >
 {% endblock %}
 
 {% block content %}
 
-<h3><span class="page-title">{{ data['page'][1] }}</span></h3>
+<h3><span class="book-title">{{ data['book'][1] }}</span></h3>
 
-<p class="page-meta">
+<p class="book-meta">
   {% if 'logged-in' in session %}
-  <span><a href="/dashboard/page/edit/{{ data['page'][0] }}"><img src="/static/images/edit.png" /></a>
-    <a href="/dashboard/page/delete/{{ data['page'][0] }}"><img src="/static/images/delete.png" /></a>
+  <span><a href="/dashboard/book/edit/{{ data['book'][0] }}"><img src="/static/images/edit.png" /></a>
+    <a href="/dashboard/book/delete/{{ data['book'][0] }}"><img src="/static/images/delete.png" /></a>
   </span>
   {% endif %}
 </p>
 
-<article class="page-body">{{ data['page'][2]|safe }}</a></article>
+<article class="book-body">{{ data['book'][2]|safe }}</a></article>
 
 <div style="margin-top:20px;" id="disqus_thread"></div>
 <script>

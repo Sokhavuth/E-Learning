@@ -15,6 +15,12 @@ class Book():
     vdict['thumbs'] = self.lib.get_thumbs(vdict['books'], 2)
     return vdict
 
+  def get_book(self, id):
+    vdict = copy.deepcopy(config.vdict)
+    vdict['book'] = self.bookdb.select(1, id=id)
+
+    return vdict
+
   def load(self, page):
     vdict = copy.deepcopy(config.vdict)
     vdict['books'] = self.bookdb.select(vdict['book_max_post'], page=page)
