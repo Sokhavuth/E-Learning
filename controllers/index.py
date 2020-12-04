@@ -4,16 +4,19 @@ from flask import render_template, redirect, session, request
 from flask_classful import FlaskView, route
 from controllers.post import Post
 from controllers.page import Page
+from controllers.book import Book
 
 class Index(FlaskView):
     def __init__(self):
         self.post = Post()
         self.page = Page()
+        self.book = Book()
 
     @route('/')
     def index(self):
         session['page'] = 0
         vdict = self.post.get_post()
+        vdict['books'] = self.book.get_post_book()
         return render_template('index.html', data=vdict)
 
     @route('/panel')
@@ -65,3 +68,8 @@ class Index(FlaskView):
     def get_post_page(self, id):
         vdict = self.page.get_page(id)
         return render_template('page.html', data=vdict)
+
+    @route('/book/load/')
+    def load_book(self):
+        ajax = request.args.get('ajax', 0, type=int)
+        return self.book.load(page=ajax)

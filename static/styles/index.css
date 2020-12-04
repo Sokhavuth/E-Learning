@@ -72,9 +72,27 @@
   grid-gap: 15px;
   margin-top: 20px;
 }
-#books img{
+#books a{
   width: 100%;
+  position: relative;
+  padding-top: 140%;
+  overflow: hidden;
+}
+#books img{
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  top: 0;
+  left: 0;
   border: 1px solid grey;
+}
+#load-more{
+  text-align: center;
+  padding-top: 20px;
+}
+#load-more img:hover{
+  opacity: .5;
+  cursor: pointer;
 }
 @media only screen and (max-width: 600px){
   #books{

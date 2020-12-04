@@ -1,4 +1,4 @@
-#models/dashboard/pagedb.py
+#models/dashboard/bookdb.py
 import os, psycopg2
 
 class Bookdb():

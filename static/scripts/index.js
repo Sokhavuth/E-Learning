@@ -1,5 +1,9 @@
 //static/scripts/index.js
 class Index{
+  constructor(){
+    this.page = 0;
+  }
+
   navigate(nav){
     $('#front-nav .home').attr('src', '/static/images/loading.gif')
     $.get("/panel",
@@ -40,6 +44,30 @@ class Index{
         alert('Fail to connect to server.');
     });
   }
+
+  loadBook(){
+    $('#load-more img').attr('src', '/static/images/loading.gif');
+    index.page += 1;
+
+    $.get('/book/load/',
+      {'ajax':index.page},
+      function(data, status){
+        if(status === "success"){
+          var html = "";
+        
+          for(var v=0; v<data['books'].length; v++){
+            html += `<a href="/book/${ data['books'][v][0] }"><img src="${ data['thumbs'][v] }" /></a>`;
+          }
+
+          $('#books').append(html);
+          $('#load-more img').attr('src', '/static/images/load-more.png');
+
+        }else{
+          alert('Fail to connect to server.');
+        }
+    });
+  }
+
 }//End of class
 
 const index = new Index();

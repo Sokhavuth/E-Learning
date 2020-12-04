@@ -39,10 +39,15 @@
 </div>
 
 <div id="books">
-  <img src="https://1.bp.blogspot.com/-OEDycFbargA/XzyMbiapG9I/AAAAAAABpOQ/eXTomwZY1Y8Vq5CcIkg-ziQ2-4Ehc8ilwCLcBGAsYHQ/s459/python.jpg" />
-  <img src="https://1.bp.blogspot.com/-DLCvvRwp2MU/XubFkoD9V5I/AAAAAAABmzg/U-BJW8wF9mEwTVLeTGuBoMBtorGxd_bGgCK4BGAsYHg/s645/ADB1.jpg" />
-  <img src="https://1.bp.blogspot.com/-sV8txL65fTY/X1rXhKF3kzI/AAAAAAABp5c/sghwMD-cKjAmu2BossLssqO62kdimi3SQCLcBGAsYHQ/s0/frameworks.jpg" />
-  <img src="https://1.bp.blogspot.com/-YrHEj7imjyI/X3PpRDzCvQI/AAAAAAABqRM/eJNJy0oTQl4qTQijL18ugAMuYitp42VmgCLcBGAsYHQ/s0/pyproject.png" />
+  {% if 'books' in data %}
+  {% for v in range(data['books']['books']|length) %}
+  <a href="/book/{{ data['books']['books'][v][0] }}"><img src="{{ data['books']['thumbs'][v] }}" /></a>
+  {% endfor %}
+  {% endif %}
+</div>
+
+<div id="load-more" class="load-more region">
+  <img onclick="index.loadBook()" src="/static/images/load-more.png" />
 </div>
 
 {% endblock %}
