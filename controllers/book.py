@@ -26,12 +26,14 @@ class Book():
     vdict['books'] = self.bookdb.select(vdict['book_max_post'], page=page)
     vdict['thumbs'] = self.lib.get_thumbs(vdict['books'], 2)
 
-    new_list = []
-    for book in vdict['books']:
-      new_book = list(book)
-      new_book[3] = book[3].strftime('%d/%m/%Y') 
-      new_book[4] = book[4].strftime('%H:%M:%S') 
-      new_list.append(new_book)
+    if vdict['books']:
+      new_list = []
+      for book in vdict['books']:
+        new_book = list(book)
+        new_book[3] = book[3].strftime('%d/%m/%Y') 
+        new_book[4] = book[4].strftime('%H:%M:%S') 
+        new_list.append(new_book)
 
-      vdict['books'] = new_list
-      return vdict
+        vdict['books'] = new_list
+        
+    return vdict

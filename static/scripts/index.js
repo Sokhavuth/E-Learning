@@ -54,7 +54,6 @@ class Index{
       function(data, status){
         if(status === "success"){
           var html = "";
-        
           for(var v=0; v<data['books'].length; v++){
             html += `<a href="/book/${ data['books'][v][0] }"><img src="${ data['thumbs'][v] }" /></a>`;
           }
