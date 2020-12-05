@@ -15,6 +15,10 @@ class Dashboard(FlaskView):
     self.book = Book()
     self.upload = Upload()
 
+  @route('/favicon.ico')
+  def favicon(self):
+    redirect('/static/images/site_logo.png')
+
   @route('/', methods=['GET', 'POST'])
   def index(self):
     session['page'] = 0

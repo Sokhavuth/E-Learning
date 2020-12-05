@@ -14,9 +14,9 @@ class Upload():
       f = request.files['fupload']
       if f != '':
         id = str(uuid.uuid4().int)
-        ROOT_DIR = os.path.dirname(os.path.abspath("config.py"))
-        savePath = ROOT_DIR + '/static/uploads/' + id + '_' + secure_filename(f.filename)
         url = '/static/uploads/' + id + '_' + secure_filename(f.filename)
+        ROOT_DIR = os.path.dirname(os.path.abspath("config.py"))
+        savePath = ROOT_DIR + url
         f.save(savePath)
         vdict['url'] = url
         return render_template('dashboard/uploadurl.html', data=vdict)
