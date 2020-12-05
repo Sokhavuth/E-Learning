@@ -1,10 +1,11 @@
 #controllers/dashboard/dashboard.py
-from flask import session
+from flask import session, render_template
 from flask_classful import FlaskView, route
 from controllers.dashboard.category import Category
 from controllers.dashboard.post import Post
 from controllers.dashboard.page import Page
 from controllers.dashboard.book import Book
+from controllers.dashboard.upload import Upload
 
 class Dashboard(FlaskView):
   def __init__(self):
@@ -12,6 +13,7 @@ class Dashboard(FlaskView):
     self.post = Post()
     self.page = Page()
     self.book = Book()
+    self.upload = Upload()
 
   @route('/', methods=['GET', 'POST'])
   def index(self):
@@ -87,5 +89,10 @@ class Dashboard(FlaskView):
   def load_book(self):
     session['page'] += 1
     return self.book.load(session['page'])
+
+  @route('/upload/', methods=['GET', 'POST'])
+  def upload_file(self):
+    return self.upload.get_post()
+    
  
 dashboard = Dashboard()

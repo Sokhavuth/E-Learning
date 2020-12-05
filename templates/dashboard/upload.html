@@ -1,0 +1,35 @@
+<!--templates/upload.html-->
+<!DOCTYPE html>
+<html>
+  <head>
+    {% block head %}
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="This blog engine is built for e-learning">
+    <meta name="robots" content="index, follow">
+    <meta name='keywords' content='e-learning, learning, school, math, programming'>
+    <title>{{data['blog_title']}}</title>
+    <link href="/static/styles/base.css" rel="stylesheet">
+    <link href="/static/styles/upload.css" rel="stylesheet">
+    <link href="/static/fonts/setup.css" rel='stylesheet'>
+    <link href="/static/images/site_logo.png" rel="icon">
+    {% endblock %}
+  </head>
+  <body>
+    <div id="main" class="main region">
+      <div id="form-title">ទំរង់បែបបទ​ចំលង​ឯកសារ</div>
+        {% block content %}
+        <form id='content' action="/dashboard/upload/" method="POST" enctype="multipart/form-data">
+          <a>ជ្រើសរើស​ឯកសារៈ</a><input type="file" name="fupload" required />
+          <a></a><input type='submit' value="ចំលងទុក​ក្នុង​គេហទំព័រ" />
+        </form>
+        {% endblock %}
+    </div>
+
+    <div id="footer" class="footer region">
+      {% block footer %}
+      &copy; Copyright 2020 by <a href="https://www.khmerweb.app/">Khmer Web</a>.
+      {% endblock %}
+    </div>
+  </body>
+</html>

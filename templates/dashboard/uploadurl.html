@@ -1,0 +1,43 @@
+<!--templates/upload.html-->
+<!DOCTYPE html>
+<html>
+  <head>
+    {% block head %}
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="This blog engine is built for e-learning">
+    <meta name="robots" content="index, follow">
+    <meta name='keywords' content='e-learning, learning, school, math, programming'>
+    <title>{{data['blog_title']}}</title>
+    <script src="/static/scripts/jQuery.js"></script>
+    <link href="/static/styles/base.css" rel="stylesheet" >
+    <link href="/static/styles/uploadurl.css" rel="stylesheet">
+    <link href="/static/fonts/setup.css" rel='stylesheet'>
+    <link href="/static/images/site_logo.png" rel="icon">
+    {% endblock %}
+  </head>
+  <body>
+    <div id="main" class="main region">
+        
+        <div id="upload">
+          {% block content %}
+          <input id="copy" type="button" value="ចំលងតំណរភ្ជាប់" /><input class="url" type="text" value="{{data['url']}}" />
+          <script>
+            $('#copy').click(function(){
+              $(this).siblings('input.url').select();      
+              document.execCommand("copy");
+              window.close();
+            });
+          </script>
+          {% endblock %}
+        </div>
+        
+    <div>
+
+    <div id="footer" class="footer region">
+      {% block footer %}
+      &copy; Copyright 2020 by <a href="https://www.khmerweb.app/">Khmer Web</a>.
+      {% endblock %}
+    </div>
+  </body>
+</html>

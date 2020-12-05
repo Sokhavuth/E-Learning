@@ -1,0 +1,49 @@
+/*static/styles/uploadurl.css*/
+body{
+  background: grey;
+  position: relative;
+}
+
+#upload{
+  width: 500px;
+  background: lavender;
+  margin:30px auto;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 140px auto;
+  grid-gap: 10px;
+  font: 14px/1.5 OdorMeanChey;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%,0);
+}
+
+#upload input{
+  padding: 10px;
+}
+
+#upload input[type=file]{
+  border: 1px solid black;
+}
+
+#upload input[type=button],
+#upload input[type=submit]{
+  font: 14px/1.5 OdorMeanChey;
+}
+
+#upload a{
+  text-align: right;
+  padding: 10px 0;
+}
+
+@media only screen and (max-width: 600px){
+  #upload{
+    grid-template-columns: 100%;
+    width: 100%;
+  }
+
+  #upload a{
+    text-align: left;
+    padding: 0;
+  }
+}
