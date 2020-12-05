@@ -1,6 +1,6 @@
 #controllers/dashboard/upload.py
-import config, copy, uuid
-from flask import render_template, session, redirect, request
+import os, config, copy, uuid
+from flask import render_template, request, session
 from werkzeug.utils import secure_filename
 
 class Upload():
@@ -14,9 +14,11 @@ class Upload():
       f = request.files['fupload']
       if f != '':
         id = str(uuid.uuid4().int)
-        url = 'static/uploads/' + id + '_' + secure_filename(f.filename)
-        f.save(url)
-        vdict['url'] = '/' + url
+        ROOT_DIR = os.path.dirname(os.path.abspath("config.py"))
+        savePath = ROOT_DIR + '/static/uploads/' + id + '_' + secure_filename(f.filename)
+        url = '/static/uploads/' + id + '_' + secure_filename(f.filename)
+        f.save(savePath)
+        vdict['url'] = url
         return render_template('dashboard/uploadurl.html', data=vdict)
       else:
         return render_template('dashboard/upload.html', data=vdict)

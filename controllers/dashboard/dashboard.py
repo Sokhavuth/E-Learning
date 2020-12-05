@@ -1,5 +1,5 @@
 #controllers/dashboard/dashboard.py
-from flask import session, render_template
+from flask import session
 from flask_classful import FlaskView, route
 from controllers.dashboard.category import Category
 from controllers.dashboard.post import Post
