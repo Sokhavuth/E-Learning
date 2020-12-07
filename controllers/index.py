@@ -5,12 +5,14 @@ from flask_classful import FlaskView, route
 from controllers.post import Post
 from controllers.page import Page
 from controllers.book import Book
+from controllers.user import User
 
 class Index(FlaskView):
     def __init__(self):
         self.post = Post()
         self.page = Page()
         self.book = Book()
+        self.user = User()
 
     @route('/')
     def index(self):
@@ -78,3 +80,8 @@ class Index(FlaskView):
     def get_post_book(self, id):
         vdict = self.book.get_book(id)
         return render_template('book.html', data=vdict)
+
+    @route('/user/<id>')
+    def get_user(self, id):
+        vdict = self.user.get_user(id)
+        return render_template('user.html', data=vdict)

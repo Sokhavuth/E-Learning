@@ -1,0 +1,42 @@
+/*static/styles/post.css*/
+#main{
+  display: grid;
+  grid-template-columns: 75% auto;
+  grid-gap: 20px;
+  margin-top: 30px;
+}
+#main #content, #main #sidebar{
+  background: lavender;
+  min-height: 400px;
+}
+#main #content{
+  padding: 20px;
+}
+#main #content .user-title{
+  font: 20px/1.5 Oswald, Koulen;
+}
+#main #content .user-body{
+  margin-top: 30px;
+}
+#main #content .user-body img{
+  width: 100%;
+}
+#main #content .user-meta{
+  margin: 20px 0;
+}
+#main #content .user-meta span{
+  float: right;
+  position: relative;
+  top: -15px;
+}
+#main #content .user-meta img{
+  width: 30px;
+  margin-left: 5px;
+}
+
+@media only screen and (max-width: 600px){
+  #main{
+    grid-template-columns: 100%;
+    padding: 20px;
+  }
+}
