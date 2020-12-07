@@ -21,7 +21,7 @@ class User():
         vdict['message'] = 'ចាំបាច់​ត្រូវ​មាន​ E-MAIL!'
         return render_template('dashboard/signup.html', data=vdict)
 
-      if (self.userdb.check_user(email)) and (not ('edit' in session)):
+      if (self.userdb.check_email(email)) and (not ('edit' in session)):
         vdict['message'] = 'E-MAIL នេះ​ត្រូវ​បាន​គេ​យក​ទៅ​ប្រើប្រាស់​ហើយ។'
         return render_template('dashboard/signup.html', data=vdict)
         

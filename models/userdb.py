@@ -66,11 +66,21 @@ class Userdb():
     self.conn.close()
     return result
 
-  def check_user(self, email):
+  def check_email(self, email):
     self.set_conection()
 
     SQL = "SELECT EMAIL, PASSWORD FROM USERS WHERE EMAIL = %s LIMIT 1"
     self.cursor.execute(SQL, (email,))
+    result = self.cursor.fetchone()
+    
+    self.conn.close()
+    return result
+
+  def check_user(self, *user):
+    self.set_conection()
+
+    SQL = "SELECT EMAIL, PASSWORD FROM USERS WHERE EMAIL = %s AND PASSWORD = %s LIMIT 1"
+    self.cursor.execute(SQL, (user))
     result = self.cursor.fetchone()
     
     self.conn.close()
