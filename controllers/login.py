@@ -12,7 +12,11 @@ class Login(FlaskView):
   def login(self):
     vdict = copy.deepcopy(config.vdict)
     vdict['blog_title'] = 'ទំព័រ​ចុះឈ្មោះ'
-    
+
+    user = self.userdb.select(1)
+    if not user:
+      return redirect('/dashboard/signup/')
+
     if request.method == 'POST':
       email = request.form['femail']
       password = request.form['fpassword']
@@ -31,3 +35,5 @@ class Login(FlaskView):
   def logout(self):
     session.pop('logged-in', None)
     return redirect('/')
+
+login = Login()

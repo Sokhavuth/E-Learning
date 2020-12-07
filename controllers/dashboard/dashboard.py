@@ -6,6 +6,7 @@ from controllers.dashboard.post import Post
 from controllers.dashboard.page import Page
 from controllers.dashboard.book import Book
 from controllers.dashboard.upload import Upload
+from controllers.dashboard.user import User
 
 class Dashboard(FlaskView):
   def __init__(self):
@@ -14,6 +15,7 @@ class Dashboard(FlaskView):
     self.page = Page()
     self.book = Book()
     self.upload = Upload()
+    self.user = User()
 
   @route('/favicon.ico')
   def favicon(self):
@@ -97,6 +99,25 @@ class Dashboard(FlaskView):
   @route('/upload/', methods=['GET', 'POST'])
   def upload_file(self):
     return self.upload.get_post()
+
+  @route('/signup/', methods=['GET', 'POST'])
+  def signup(self):
+    session['page'] = 0
+    return self.user.get_post_user()
+
+  @route('/user/delete/<id>')
+  def delete_user(self, id):
+    return self.user.delete(id)
+
+  @route('/user/edit/<id>')
+  def edit_user(self, id):
+    session['edit'] = id
+    return self.user.edit(id)
+
+  @route('/user/load/')
+  def load_user(self):
+    session['page'] += 1
+    return self.user.load(session['page'])
     
- 
+
 dashboard = Dashboard()

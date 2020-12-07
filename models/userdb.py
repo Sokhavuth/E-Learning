@@ -24,11 +24,15 @@ class Userdb():
   def create_table(self):
     self.set_conection()
     
-    SQL = '''CREATE TABLE IF NOT EXISTS TEACHERS(
+    SQL = '''CREATE TABLE IF NOT EXISTS USERS(
       ID SERIAL PRIMARY KEY,
       EMAIL VARCHAR(320),
       PASSWORD VARCHAR(320),
-      ROLE TEXT
+      ROLE TEXT,
+      CONTENT TEXT,
+      CATDATE DATE,
+      CATTIME TIME,
+      AUTHOR TEXT
     )'''
 
     self.cursor.execute(SQL)
@@ -38,20 +42,64 @@ class Userdb():
   def insert(self, *user):
     self.set_conection()
 
-    self.cursor.execute("INSERT INTO TEACHERS (EMAIL, PASSWORD, ROLE) VALUES %s ", (user,))
+    self.cursor.execute("INSERT INTO USERS (EMAIL, PASSWORD, ROLE, CONTENT, CATDATE, CATTIME, AUTHOR) VALUES %s ", (user,))
   
     self.conn.commit()
     self.conn.close()
 
-  def select(self, amount):
+  def select(self, amount=5, id='', page=0):
     self.set_conection()
 
-  def check_user(self, *user):
+    if id:
+      SQL = "SELECT * FROM USERS WHERE ID=%s"
+      self.cursor.execute(SQL, (id,))
+      result = self.cursor.fetchone()
+    elif page:
+      SQL = "SELECT * FROM USERS ORDER BY ID DESC OFFSET %s ROWS FETCH NEXT %s ROWS ONLY"
+      self.cursor.execute(SQL, (amount*page, amount))
+      result = self.cursor.fetchall()
+    else:
+      SQL = "SELECT * FROM USERS ORDER BY ID DESC LIMIT %s"
+      self.cursor.execute(SQL, (amount,))
+      result = self.cursor.fetchall()
+
+    self.conn.close()
+    return result
+
+  def check_user(self, email):
     self.set_conection()
 
-    SQL = "SELECT EMAIL, PASSWORD FROM TEACHERS WHERE EMAIL = %s AND PASSWORD = %s LIMIT 1"
-    self.cursor.execute(SQL, user)
+    SQL = "SELECT EMAIL, PASSWORD FROM USERS WHERE EMAIL = %s LIMIT 1"
+    self.cursor.execute(SQL, (email,))
     result = self.cursor.fetchone()
     
     self.conn.close()
     return result
+
+  def check_author(self, email):
+    self.set_conection()
+
+    SQL = "SELECT * FROM USERS WHERE EMAIL = %s LIMIT 1"
+    self.cursor.execute(SQL, (email,))
+    result = self.cursor.fetchone()
+    
+    self.conn.close()
+    return result
+
+  def delete(self, id):
+    self.set_conection()
+
+    SQL = "DELETE FROM USERS WHERE ID = %s"
+    self.cursor.execute(SQL, (id,))
+
+    self.conn.commit()
+    self.conn.close()
+
+  def update(self, *user):
+    self.set_conection()
+
+    sql = "UPDATE USERS SET EMAIL = %s, PASSWORD = %s, ROLE = %s, CONTENT = %s, CATDATE = %s, CATTIME = %s, AUTHOR = %s WHERE ID = %s"
+    self.cursor.execute(sql, user)
+
+    self.conn.commit()
+    self.conn.close()
