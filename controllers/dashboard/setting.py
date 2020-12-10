@@ -1,5 +1,5 @@
 #controllers/dashboard/setting.py
-import config, copy, uuid, datetime
+import config, copy, uuid, datetime, importlib
 from flask import render_template, session, redirect, request
 from lib import Lib
 from models.dashboard.settingdb import Settingdb
@@ -28,6 +28,7 @@ class Setting():
       else:
         self.settingdb.insert(max_post, max_category, max_post_category, max_book, blog_title, blog_description, secret_key)
 
+      importlib.reload(config)
       vdict['setting'] = self.settingdb.select()
 
       return render_template('dashboard/setting.html', data=vdict)
