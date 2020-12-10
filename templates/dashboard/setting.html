@@ -1,0 +1,26 @@
+<!--templates/dasboard/setting.html-->
+{% extends 'dashboard/dashboard.html' %}
+
+{% block head %}
+{{ super() }}
+<link href="/static/styles/setting.css" rel="stylesheet" >
+{% endblock %}
+
+{% block content %}
+  <form id='setting' action='/dashboard/setting/' method="POST" >
+    <a>ចំនួន​ការផ្សាយ​ក្នុង​ទំព័រ​គ្រប់គ្រង:</a><input value="{{ data['setting'][0] }}" name="fmax-post" type="text"  required />
+    <a>ចំនួន​ជំពូក​ក្នុង​ទំព័រ​គ្រប់គ្រង:</a><input value="{{ data['setting'][1] }}" type="text" name="fmax-category" required />
+    <a>ចំនួន​ការផ្សាយ​ក្នុង​ជំពូកនិមួយៗ​:</a><input value="{{ data['setting'][2] }}" type="text" name="fmax-post-category" required />
+    <a>ចំនួន​សៀវភៅ​នៅ​ទំព័រ​មុខ:</a><input type='text' value="{{ data['setting'][3] }}" name="fbook-post" required />
+    <a>ចំណង​ជើង​គេហទំព័រ:</a><input type='text' value="{{ data['setting'][4] }}" name="fblog-title" required />
+    <a>សេចក្តី​អធិប្បាយ​គេហទំព័រ:</a><input type='text' value="{{ data['setting'][5] }}" name="fblog-description" required />
+    <a>កូដ​សំងាត់:</a><input type='text' value="{{ data['setting'][6] }}" name="fsecret-key" required />
+    <a></a><input id="submit" class="bottom-widget" type="submit" value="ចុះ​ផ្សាយ">
+    </div>
+  </form>
+  <div id="message">{{ data['message'] }}</div>
+{% endblock %}
+
+{% block item_listing %}
+
+{% endblock %}
