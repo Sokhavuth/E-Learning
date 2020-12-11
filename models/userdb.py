@@ -113,3 +113,16 @@ class Userdb():
 
     self.conn.commit()
     self.conn.close()
+
+  def search(self, query):
+    self.set_conection()
+  
+    sql = "SELECT * from USERS WHERE"
+    sql += " EMAIL LIKE '%"+query+"%'"
+    sql += " OR CONTENT LIKE '%"+query+"%'"
+    sql += " ORDER BY CATDATE DESC, CATTIME DESC LIMIT 20"
+
+    self.cursor.execute(sql)
+    
+    result = self.cursor.fetchall()
+    return result

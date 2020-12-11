@@ -28,7 +28,14 @@
           <a >{{data['blog_title']}}</a>
         </div>
         <div id="blog-search">
-          <form class="search" action="/search/backend/" method="post">
+          <form class="search" action="/dashboard/search/" method="post">
+            <select id="search-option" name="fsearch-option" >
+              <option>មេរៀន</option>
+              <option>ប្រភេទ​មេរៀន</option>
+              <option>ទំព័រ​មាតិកា</option>
+              <option>សៀវភៅ</option>
+              <option>សមាជិក</option>
+            </select>
             <input type="text"  placeholder="Search.." name="fquery" required>
             <button type="submit">ស្វែង​រក</button>
           </form>

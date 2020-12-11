@@ -8,6 +8,7 @@ from controllers.dashboard.book import Book
 from controllers.dashboard.upload import Upload
 from controllers.dashboard.user import User
 from controllers.dashboard.setting import Setting
+from controllers.dashboard.search import Search
 
 class Dashboard(FlaskView):
   def __init__(self):
@@ -18,6 +19,7 @@ class Dashboard(FlaskView):
     self.upload = Upload()
     self.user = User()
     self.setting = Setting()
+    self.search = Search()
 
   @route('/favicon.ico')
   def favicon(self):
@@ -124,6 +126,10 @@ class Dashboard(FlaskView):
   @route('/setting/', methods=['GET', 'POST'])
   def get_post_setting(self):
     return self.setting.get_set()
+
+  @route('/search/', methods=['GET', 'POST'])
+  def get_post_search(self):
+    return self.search.get_post()
     
 
 dashboard = Dashboard()

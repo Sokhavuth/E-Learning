@@ -1,0 +1,26 @@
+<!--templates/dasboard/searching.html-->
+{% extends 'dashboard/dashboard.html' %}
+
+{% block head %}
+{{ super() }}
+<link href="/static/styles/search.css" rel="stylesheet" >
+{% endblock %}
+
+{% block content %}
+  <div id='search-result' >
+  {% if  'search' in data %}
+  {% for v in range(data['search']|length) %}
+  {% if data['type'] != 'category' %}
+    <h3 class='post-title'><a href="/{{ data['type'] }}/{{ data['search'][v][0] }}">{{ data['search'][v][1] }}</a></h3>
+  {% elif data['type'] == 'category' %}
+    <h3 class='post-title'><a href="/{{ data['type'] }}/{{ data['search'][v][1] }}">{{ data['search'][v][1] }}</a></h3>
+  {% endif %}
+  {% endfor %}
+  {% endif %}  
+  </div>
+  <div id="message">{{ data['message'] }}</div>
+{% endblock %}
+
+{% block item_listing %}
+
+{% endblock %}

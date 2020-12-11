@@ -42,10 +42,11 @@ body{
 }
 #blog-search form{
   display: grid;
-  grid-template-columns: 75% 25%;
+  grid-template-columns: 25% 50% 25%;
 }
 #blog-search input,
-#blog-search button{
+#blog-search button,
+#blog-search #search-option{
   font: 14px/1.5 Vidaloka, OdorMeanChey;
   padding: 5px;
   color: darkblue;

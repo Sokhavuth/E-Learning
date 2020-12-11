@@ -40,7 +40,7 @@
   {% if 'users' in data %}
   {% for v in range(data['users']|length) %}
   <li class="user">
-    <a class="thumbnail" href="/page/{{ data['users'][v][0] }}">
+    <a class="thumbnail" href="/user/{{ data['users'][v][0] }}">
       <img src="{{data['thumbs'][v]}}" />
     </a>
 

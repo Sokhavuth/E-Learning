@@ -1,0 +1,7 @@
+/*static/styles/search.css*/
+#search-result{
+  background: lavender;
+  padding: 20px;
+  min-height: 100%;
+  font: 14px/1.75 Vidaloka, OdorMeanChey; 
+}
