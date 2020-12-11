@@ -1,0 +1,28 @@
+/*static/styles/post.css*/
+#main{
+  display: grid;
+  grid-template-columns: 75% auto;
+  grid-gap: 20px;
+  margin-top: 30px;
+}
+#main #content, #main #sidebar{
+  background: lavender;
+  min-height: 400px;
+}
+#main #content{
+  padding: 20px;
+}
+#main #content .search-title{
+  font: 20px/1.5 Oswald, Koulen;
+}
+#main #content .search-body{
+  margin-top: 30px;
+  font: 14px/1.75 Vidaloka, OdorMeanChey; 
+}
+
+@media only screen and (max-width: 600px){
+  #main{
+    grid-template-columns: 100%;
+    padding: 20px;
+  }
+}

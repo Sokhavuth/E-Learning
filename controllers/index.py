@@ -6,6 +6,7 @@ from controllers.post import Post
 from controllers.page import Page
 from controllers.book import Book
 from controllers.user import User
+from controllers.search import Search
 
 class Index(FlaskView):
     def __init__(self):
@@ -13,6 +14,7 @@ class Index(FlaskView):
         self.page = Page()
         self.book = Book()
         self.user = User()
+        self.search = Search()
 
     @route('/')
     def index(self):
@@ -85,3 +87,7 @@ class Index(FlaskView):
     def get_user(self, id):
         vdict = self.user.get_user(id)
         return render_template('user.html', data=vdict)
+
+    @route('/search/', methods=['GET', 'POST'])
+    def get_post_search(self):
+        return self.search.get_post()

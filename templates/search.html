@@ -1,0 +1,25 @@
+<!--templates/page.html-->
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+<link href="/static/styles/fsearch.css" rel="stylesheet" >
+{% endblock %}
+
+{% block content %}
+
+<h3><span class="search-title">លទ្ធផល​នៃ​ការស្វែង​រកៈ</span></h3>
+
+<article class="search-body">
+  {% if  'search' in data %}
+  {% for v in range(data['search']|length) %}
+  {% if data['type'] != 'category' %}
+    <h3 class='post-title'><a href="/{{ data['type'] }}/{{ data['search'][v][0] }}">{{ data['search'][v][1] }}</a></h3>
+  {% elif data['type'] == 'category' %}
+    <h3 class='post-title'><a href="/{{ data['type'] }}/{{ data['search'][v][1] }}">{{ data['search'][v][1] }}</a></h3>
+  {% endif %}
+  {% endfor %}
+  {% endif %}  
+</a></article>
+
+{% endblock %}

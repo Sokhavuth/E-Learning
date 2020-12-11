@@ -47,7 +47,12 @@
           <div class="description">{{ data['blog_description'] }}</div>
         </div>
         <div id="blog-search">
-          <form class="search" action="/search/frontend" method="post">
+          <form class="search" action="/search/" method="post">
+            <select id="search-option" name="fsearch-option" >
+              <option>មេរៀន</option>
+              <option>ទំព័រ​មាតិកា</option>
+              <option>សៀវភៅ</option>
+            </select>
             <input type="text"  placeholder="Search.." name="fquery" required>
             <button type="submit">ស្វែង​រក</button>
           </form>

@@ -42,7 +42,7 @@ body{
 }
 #blog-search form{
   display: grid;
-  grid-template-columns: 25% 50% 25%;
+  grid-template-columns: 26% 49% 25%;
 }
 #blog-search input,
 #blog-search button,
