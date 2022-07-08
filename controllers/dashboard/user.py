@@ -29,6 +29,7 @@ class User():
       role = request.form['fuser-role']
       date = request.form['fuser-date']
       time = request.form['fuser-time']
+      
       if 'logged-in' in session:
         author = session['logged-in']
         author_role = self.userdb.check_author(author)
